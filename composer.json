@@ -1,0 +1,21 @@
+{
+  "name": "p4_blog/app",
+  "require": {
+    "php": ">=5.3",
+    "twig/twig": "^2.10",
+    "tinymce/tinymce": "^5.0",
+    "twbs/bootstrap": "^4.3",
+    "components/jquery": "^3.3"
+  },
+  "authors": [
+    {
+      "name": "N3ll3",
+      "email": "nelleonnet@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "P4_creerBlogEcrivain"
+    }
+  }
+}
