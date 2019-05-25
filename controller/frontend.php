@@ -1,15 +1,32 @@
 <?php
 
 // Chargement des classes
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
+use Model\PostManager;
+use Model\CommentManager;
+
+require_once('vendor/autoload.php');
+
+function loadTwig()
+{
+    $loader = new Twig_Loader_Filesystem('view\frontend\templates');
+    return new Twig_Environment($loader, [
+        'debug' => true,
+        'cache' => false /*__DIR__.'/view/frontend/tmp'*/
+    ]);
+}
 
 function listPosts()
 {
     $postManager = new PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
+    $twig = loadTwig();
+    $twig->addExtension(new \Twig\Extension\DebugExtension());
+    $datas = $posts->fetchAll();
 
-    require('view/frontend/listPostsView.php');
+    echo  $twig->render("listPostView.twig", [
+        'datas' => $datas
+    ]);
+    $posts->closeCursor();
 }
 
 function post()
@@ -31,8 +48,7 @@ function addComment($postId, $author, $comment)
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else {
+    } else {
         header('Location: index.php?action=post&id=' . $postId);
     }
 }

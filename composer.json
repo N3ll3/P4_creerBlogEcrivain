@@ -7,15 +7,17 @@
     "twbs/bootstrap": "^4.3",
     "components/jquery": "^3.3"
   },
-  "authors": [
-    {
-      "name": "N3ll3",
-      "email": "nelleonnet@gmail.com"
-    }
-  ],
+  "authors": [{
+    "name": "N3ll3",
+    "email": "nelleonnet@gmail.com"
+  }],
   "autoload": {
     "psr-4": {
-      "App\\": "P4_creerBlogEcrivain"
+      "Model\\": "model/",
+      "Controller\\": "controller/",
+      "Vendor\\": "vendor/",
+      "Components\\": "components/",
+      "View\\": "view"
     }
   }
 }

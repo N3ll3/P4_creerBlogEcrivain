@@ -12,6 +12,11 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
     );
 
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'View\\' => 5,
+            'Vendor\\' => 7,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -21,13 +26,26 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
-        'A' => 
+        'M' => 
         array (
-            'App\\' => 4,
+            'Model\\' => 6,
+        ),
+        'C' => 
+        array (
+            'Controller\\' => 11,
+            'Components\\' => 11,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'View\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/view',
+        ),
+        'Vendor\\' => 
+        array (
+            0 => 'D:\\N3ll3\\wamp64\\www\\P4_creerBlogEcrivain\\vendor',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
@@ -40,9 +58,17 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'App\\' => 
+        'Model\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/P4_creerBlogEcrivain',
+            0 => __DIR__ . '/../..' . '/model',
+        ),
+        'Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/controller',
+        ),
+        'Components\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/components',
         ),
     );
 
