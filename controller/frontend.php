@@ -34,10 +34,18 @@ function post()
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $postData = $postManager->getPost($_GET['id']);
+    $commentsData = $commentManager->getComments($_GET['id']);
+    // $post = $postData->fetch();
+    $comments = $commentsData->fetchAll();
 
-    require('view/frontend/postView.php');
+    $twig = loadTwig();
+    $twig->addExtension(new \Twig\Extension\DebugExtension());
+
+    echo  $twig->render("OnePostView.twig", [
+        'post' => $postData,
+        'comments' => $comments
+    ]);
 }
 
 function addComment($postId, $author, $comment)
