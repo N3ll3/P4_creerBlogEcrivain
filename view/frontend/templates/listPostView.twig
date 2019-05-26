@@ -1,0 +1,21 @@
+{% extends 'homeLayout.twig' %}
+{% block header %}
+<h1>Bienvenue sur mon Blog</h1>
+<p>
+    Petit layus de presentation du pourquoi du comment du blog
+</p>
+<p>Derniers billets du blog :</p>{% endblock %}{% block post %}{% for data in datas %}
+<h3>
+
+    {{ data.title}}
+    <em>le
+        {{data.creation_date_fr}}</em>
+</h3>
+<p>
+    {{data.content}}<br/>
+</p>
+<p>
+    <em>
+        <a href="index.php?action=post&amp;id={{data.id }}">Commentaires</a>
+    </em>
+</p></p>{% endfor %}{% endblock %}

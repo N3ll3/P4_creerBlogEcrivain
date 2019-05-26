@@ -1,8 +1,5 @@
 <?php
-require('vendor/autoload.php');
 require('controller/frontend.php');
-
-
 
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
@@ -27,10 +24,31 @@ try { // On essaie de faire des choses
                 // Autre exception
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        } elseif ($_GET['action'] == 'comment') {
+            if (isset($_GET['idComment']) && $_GET['idComment'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
+                comment($_GET['idComment']);
+            } else {
+                // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
+                throw new Exception('Aucun identifiant de commentaire envoyé');
+            }
+        } elseif ($_GET['action'] == 'edit') {
+            if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
+                if (!empty($_POST['modifiedComment'])) {
+                    edit($_POST['modifiedComment'], $_GET['idComment'], $_GET['postId']);
+                } else {
+                    // Autre exception
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+        } else {
+            // Autre exception
+            throw new Exception('Aucun identifiant de billet envoyé');
         }
     } else {
         listPosts();
     }
 } catch (Exception $e) { // S'il y a eu une erreur, alors...
+    $errorMessage = $e->getMessage();
+    // require('view/errorView.php');
     echo 'Erreur : ' . $e->getMessage();
 }
