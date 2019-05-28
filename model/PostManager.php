@@ -1,7 +1,6 @@
 <?php
 
 namespace Model;
-// require_once("model/Manager.php");
 
 use Model\Manager;
 

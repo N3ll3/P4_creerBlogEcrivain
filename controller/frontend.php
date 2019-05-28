@@ -22,7 +22,6 @@ function listPosts()
     $twig = loadTwig();
     $twig->addExtension(new \Twig\Extension\DebugExtension());
     $datas = $posts->fetchAll();
-
     echo  $twig->render("listPostView.twig", [
         'datas' => $datas
     ]);
@@ -33,19 +32,17 @@ function post()
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
-
-    $postData = $postManager->getPost($_GET['id']);
+    $post = $postManager->getPost($_GET['id']);
     $commentsData = $commentManager->getComments($_GET['id']);
-    // $post = $postData->fetch();
-    $comments = $commentsData->fetchAll();
 
+    $comments = $commentsData->fetchAll();
     $twig = loadTwig();
     $twig->addExtension(new \Twig\Extension\DebugExtension());
-
     echo  $twig->render("OnePostView.twig", [
-        'post' => $postData,
+        'post' => $post,
         'comments' => $comments
     ]);
+    $commentsData->closeCursor();
 }
 
 function addComment($postId, $author, $comment)
@@ -59,4 +56,36 @@ function addComment($postId, $author, $comment)
     } else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+
+function comment()
+{
+    $commentManager = new CommentManager();
+    $comment = $commentManager->getComment($_GET['idComment']);
+
+    $twig = loadTwig();
+    $twig->addExtension(new \Twig\Extension\DebugExtension());
+    echo  $twig->render("modifyCommentView.twig", [
+        'comment' => $comment
+    ]);
+}
+
+function editComment($modifiedComment, $idComment, $postId)
+{
+    $commentManager = new CommentManager();
+    $updatedComment = $commentManager->updateComment($modifiedComment, $idComment);
+
+    if ($updatedComment == false) {
+        throw new Exception('Impossible de modifier le commentaire');
+    } else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
+}
+
+function flagComment($idComment)
+{
+    $commentManager = new CommentManager();
+    $comment = $commentManager->getComment($idComment);
+    $flaggedComment = $commentManager->isFlagged($idComment);
+    header('Location: index.php?action=post&id=' . $comment['post_id']);
 }
