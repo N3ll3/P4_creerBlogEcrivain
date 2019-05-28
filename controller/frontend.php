@@ -70,7 +70,7 @@ function comment()
     ]);
 }
 
-function edit($modifiedComment, $idComment, $postId)
+function editComment($modifiedComment, $idComment, $postId)
 {
     $commentManager = new CommentManager();
     $updatedComment = $commentManager->updateComment($modifiedComment, $idComment);
@@ -80,4 +80,12 @@ function edit($modifiedComment, $idComment, $postId)
     } else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+
+function flagComment($idComment)
+{
+    $commentManager = new CommentManager();
+    $comment = $commentManager->getComment($idComment);
+    $flaggedComment = $commentManager->isFlagged($idComment);
+    header('Location: index.php?action=post&id=' . $comment['post_id']);
 }

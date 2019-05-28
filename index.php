@@ -1,4 +1,6 @@
 <?php
+
+
 require('controller/frontend.php');
 
 try { // On essaie de faire des choses
@@ -34,11 +36,17 @@ try { // On essaie de faire des choses
         } elseif ($_GET['action'] == 'edit') {
             if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
                 if (!empty($_POST['modifiedComment'])) {
-                    edit($_POST['modifiedComment'], $_GET['idComment'], $_GET['postId']);
+                    editComment($_POST['modifiedComment'], $_GET['idComment'], $_GET['postId']);
                 } else {
                     // Autre exception
                     throw new Exception('Tous les champs ne sont pas remplis !');
                 }
+            }
+        } elseif ($_GET['action'] == 'flag') {
+            if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
+                flagComment($_GET['idComment']);
+            } else {
+                throw new Exception('Ce commentaire ne peut etre signale');
             }
         } else {
             // Autre exception
