@@ -1,7 +1,6 @@
 <?php
 namespace Model;
 
-// require_once("model/Manager.php");
 use Model\Manager;
 
 class CommentManager extends Manager
@@ -15,13 +14,13 @@ class CommentManager extends Manager
         return $comments;
     }
 
-    public function postComment($postId, $author, $comment)
+    public function postComment($postId, $author, $content)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date, flagged;) VALUES(:post_id, :author, :comment, NOW(), :flagged)');
-        $affectedLines = $comments->execute(array('post_id' => $postId, 'author' => $author, 'comment' => $comment, 'flagged' => 0));
+        $commentsData = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date, flagged;) VALUES(:post_id, :author, :comment, :flagged, NOW())');
+        $comment = $commentsData->execute(array('post_id' => $postId, 'author' => $author, 'comment' => $content, 'flagged' => 0));
 
-        return $affectedLines;
+        return $comment;
     }
 
     public function getComment($idComment)
@@ -34,23 +33,26 @@ class CommentManager extends Manager
         return $comment;
     }
 
-    public function updateComment($modifiedComment, $idComment)
-    {
-        $db = $this->dbConnect();
-        $newComment = $db->prepare('UPDATE comments SET comment=:modifiedComment, comment_date = NOW() WHERE id=:idComment');
-        $updatedComment = $newComment->execute(array(
-            'modifiedComment' => $modifiedComment,
-            'idComment' => $idComment,
-        ));
+    // public function updateComment($modifiedComment, $idComment)
+    // {
+    //     $db = $this->dbConnect();
+    //     $newComment = $db->prepare('UPDATE comments SET comment=:modifiedComment, comment_date = NOW() WHERE id=:idComment');
+    //     $updatedComment = $newComment->execute(array(
+    //         'modifiedComment' => $modifiedComment,
+    //         'idComment' => $idComment,
+    //     ));
 
-        return $updatedComment;
-    }
+    //     return $updatedComment;
+    // }
 
     public function isFlagged($idComment)
     {
         $db = $this->dbConnect();
-        $commentFlagged = $db->prepare('UPDATE comments SET flagged = true WHERE id =:idComment');
-        $isFlagged = $commentFlagged->execute(array('idComment' => $idComment));
+
+        $commentFlagged = $db->prepare('UPDATE comments SET flagged = flagged + 1 WHERE id =:idComment');
+        $isFlagged = $commentFlagged->execute(array(
+            'idComment' => $idComment
+        ));
         return $isFlagged;
     }
 }
