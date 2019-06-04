@@ -8,14 +8,12 @@
         <title>Blog d'un ecrivain</title>
     </head>
     <body>
-        {% block header %}
+        {% block header %}{% endblock %}
+        <div id='posts'> {% block post %}{% endblock %}
+            <div class='comments'> {% block comment %}{% endblock %}
+                </div>
 
-    {% endblock %}
-    <div id='posts'>
-        {% block post %}
-    {% endblock %}
-    <div class='comments'>
-        {% block comment %}
-    {% endblock %}
-</div>
-<footer>Site etudiant pour la realisation d'un projet de le cadre de la formation DWJ d'Openclassroom</footer></body></html>
+                {# <footer>Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer> #}
+            </body>
+        </body>
+    </html>

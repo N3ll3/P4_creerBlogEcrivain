@@ -41,8 +41,8 @@
             {{comment.comment_date_fr}}</p>
 
         <p>{{comment.comment}}</p>
-        <a href="index.php?action=comment&amp;idComment={{comment.id}}&amp;postId={{post.id}}">Modifier</a>
-            <a href="index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}">
-                Signaler</a>
-        {% endfor %}
-    {% endblock %}
+        {# <a href="index.php?action=comment&amp;idComment={{comment.id}}&amp;postId={{post.id}}">Modifier</a> #}
+        <button href="index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}">
+            Signaler ce commentaire</button>
+    {% endfor %}
+{% endblock %}
