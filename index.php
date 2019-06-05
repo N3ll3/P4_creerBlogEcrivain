@@ -1,12 +1,17 @@
 <?php
-use Controller\FrontendController;
 
-require_once('vendor/autoload.php');
+use Controller\FrontendController;
+use Controller\BackendController;
+
+require('vendor/autoload.php');
 
 $frontendController = new FrontendController();
+$backendController = new BackendController();
 
 try {
     if (isset($_GET['action'])) {
+
+        //switch() case : break default 
         if ($_GET['action'] == 'listPosts') {
             $frontendController->listPosts();
         } elseif ($_GET['action'] == 'onePost') {
@@ -15,13 +20,17 @@ try {
             $frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
         } elseif ($_GET['action'] == 'flag') {
             $frontendController->flagComment($_GET['idComment']);
+        } elseif ($_GET['action'] == 'connexion') {
+            $backendController->connexionPage();
+        } elseif ($_GET['action'] == 'signUp') {
+            $backendController->signUp();
         }
     } else {
         $frontendController->listPosts();
     }
-} catch (Exception $e) {
+} catch (\Exception $e) {
     $errorMessage = $e->getMessage();
-    require('view/errorView.php');
+    // require('view/errorView.php');
     echo 'Erreur : ' . $e->getMessage();
 }
 
