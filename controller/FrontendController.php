@@ -1,0 +1,112 @@
+<?php
+namespace Controller;
+
+// Chargement des classes
+use Model\PostManager;
+use Model\CommentManager;
+
+
+require_once('vendor/autoload.php');
+
+class FrontendController
+
+{
+    public $twig;
+
+    public function __construct()
+    {
+        $loader = new \Twig\Loader\FilesystemLoader('view\frontend\templates');
+        $this->twig = new \Twig\Environment($loader, [
+            'debug' => true,
+            'cache' => false /*__DIR__.'/view/frontend/tmp'*/
+        ]);
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
+    }
+
+    public function listPosts()
+    {
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+        $datas = $posts->fetchAll();
+
+        echo  $this->twig->render("listPostView.twig", [
+            'datas' => $datas
+        ]);
+        $posts->closeCursor();
+    }
+
+    public function onePost()
+    {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $post = $postManager->getPost($_GET['id']);
+            $commentsData = $commentManager->getComments($_GET['id']);
+
+            $comments = $commentsData->fetchAll();
+
+            echo  $this->twig->render("OnePostView.twig", [
+                'post' => $post,
+                'comments' => $comments
+            ]);
+            $commentsData->closeCursor();
+        } else {
+            throw new \Exception('Aucun identifiant de billet envoyé');
+        }
+    }
+
+    public function addComment($postId, $author, $content)
+    {
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+                $commentManager = new CommentManager();
+                $comment = $commentManager->postComment($postId, $author, $content);
+
+                if ($comment === false) {
+                    throw new \Exception('Impossible d\'ajouter le commentaire !');
+                } else {
+                    header('Location: index.php?action=onePost&id=' . $postId);
+                }
+            } else {
+                throw new \Exception('Tous les champs ne sont pas remplis !');
+            }
+        }
+    }
+
+    public function flagComment($idComment)
+    {
+        if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
+            $commentManager = new CommentManager();
+            $comment = $commentManager->getComment($idComment);
+            $commentManager->isFlagged($idComment);
+            header('Location: index.php?action=onePost&id=' . $comment['post_id']);
+            //requete AJAX 
+            // API fetch(url)
+        } else {
+            throw new \Exception('Aucun identifiant de billet envoyé');
+        }
+    }
+
+    // function comment()
+    // {
+    //     $commentManager = new CommentManager();
+    //     $comment = $commentManager->getComment($_GET['idComment']);
+    //     echo  $twig->render("modifyCommentView.twig", [
+    //         'comment' => $comment
+    //     ]);
+    // }
+
+    // function editComment($modifiedComment, $idComment, $postId)
+    // {
+    //     $commentManager = new CommentManager();
+    //     $updatedComment = $commentManager->updateComment($modifiedComment, $idComment);
+
+    //     if ($updatedComment == false) {
+    //         throw new Exception('Impossible de modifier le commentaire');
+    //     } else {
+    //         header('Location: index.php?action=post&id=' . $postId);
+    //     }
+    // }
+
+
+}

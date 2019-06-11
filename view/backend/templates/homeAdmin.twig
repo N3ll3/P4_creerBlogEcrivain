@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+
+        <link href="public/css/style.css" rel="stylesheet"/>
+        <title>Blog d'un ecrivain</title>
+    </head>
+
+    <body>
+
+        {% block header %}
+            <h1>
+                Bienvenue dans votre espace Administrateur
+            </h1>
+
+        {% endblock %}
+
+        {% block writePosts %}
+
+            <a href="index.php?action=writePost.twig">
+                Ecrire un article</a>
+
+        {% endblock %}
+
+        {% block moderateComment %}
+
+            <a href="index.php?action=moderateComment.twig">
+                Moderer commentaires
+            </a>
+
+        {% endblock %}
+
+
+        {# <footer>Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer> #}
+    </body>
+</html>
