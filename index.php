@@ -10,20 +10,34 @@ $backendController = new BackendController();
 
 try {
     if (isset($_GET['action'])) {
-
-        //switch() case : break default 
-        if ($_GET['action'] == 'listPosts') {
-            $frontendController->listPosts();
-        } elseif ($_GET['action'] == 'onePost') {
-            $frontendController->onePost();
-        } elseif ($_GET['action'] == 'addComment') {
-            $frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-        } elseif ($_GET['action'] == 'flag') {
-            $frontendController->flagComment($_GET['idComment']);
-        } elseif ($_GET['action'] == 'connexion') {
-            $backendController->connexionPage();
-        } elseif ($_GET['action'] == 'signUp') {
-            $backendController->signUp();
+        switch ($_GET['action']) {
+            case 'listPosts':
+                $frontendController->listPosts();
+                break;
+            case 'onePost':
+                $frontendController->onePost();
+                break;
+            case 'addComment':
+                $frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                break;
+            case 'flag':
+                $frontendController->flagComment($_GET['idComment']);
+                break;
+            case 'connexion':
+                $backendController->connexionPage();
+                break;
+            case 'register':
+                $backendController->register();
+                break;
+            case 'signIn':
+                $backendController->signIn();
+                break;
+            case 'accesRegister':
+                $backendController->accesRegister();
+                break;
+            default;
+                $frontendController->listPosts();
+                break;
         }
     } else {
         $frontendController->listPosts();
@@ -33,21 +47,3 @@ try {
     // require('view/errorView.php');
     echo 'Erreur : ' . $e->getMessage();
 }
-
-  // elseif ($_GET['action'] == 'comment') {
-        //     if (isset($_GET['idComment']) && $_GET['idComment'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0) {
-        //         $frontendController->comment($_GET['idComment']);
-        //     } else {
-        //         // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
-        //         throw new Exception('Aucun identifiant de commentaire envoyé');
-        //     }
-        // } elseif ($_GET['action'] == 'edit') {
-        //     if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
-        //         if (!empty($_POST['modifiedComment'])) {
-        //             $frontendController->editComment($_POST['modifiedComment'], $_GET['idComment'], $_GET['postId']);
-        //         } else {
-        //             // Autre exception
-        //             throw new Exception('Tous les champs ne sont pas remplis !');
-        //         }
-        //      }
-        // } 
