@@ -42,7 +42,7 @@
 
         <p>{{comment.comment}}</p>
         {# <a href="index.php?action=comment&amp;idComment={{comment.id}}&amp;postId={{post.id}}">Modifier</a> #}
-        <button href="index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}">
-            Signaler ce commentaire</button>
+        <a href="index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}">
+            Signaler ce commentaire</a>
     {% endfor %}
 {% endblock %}

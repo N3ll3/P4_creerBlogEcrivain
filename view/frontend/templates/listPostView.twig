@@ -1,12 +1,24 @@
 {% extends 'homeLayout.twig' %}
 {% block header %}
-    <h1>Bienvenue sur mon Blog</h1>
+
+    <p>
+        <a href="index.php?action=connexion">
+            Connexion
+        </a>
+
+
+        <h1>Bienvenue sur mon Blog</h1>
+    </p>
+
     <p>
         Petit layus de presentation du pourquoi du comment du blog
     </p>
+
     <p>Derniers billets du blog :</p>
 {% endblock %}
+
 {% block post %}
+
 {% for data in datas %}
     <h3>
 
@@ -22,7 +34,9 @@
     </p>
     <p>
         <em>
-            <a href="index.php?action=onePost&amp;id={{data.id }}">Voir les commentaires
+            <a href="index.php?action=onePost&amp;id=  {{data.id }}">Voir les commentaires
+
+
             </a>
         </em>
     </p>
