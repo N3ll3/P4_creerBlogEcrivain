@@ -13,11 +13,12 @@
   }],
   "autoload": {
     "psr-4": {
-      "Model\\": "model/",
-      "Controller\\": "controller/",
+      "Model\\": "src/model/",
+      "Controller\\": "src/controller/",
       "Vendor\\": "vendor/",
       "Components\\": "components/",
-      "View\\": "view"
+      "View\\": "src/view/",
+      "Helpers\\": "src/helpers/"
     }
   }
 }

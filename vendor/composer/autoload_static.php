@@ -30,6 +30,10 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
         array (
             'Model\\' => 6,
         ),
+        'H' => 
+        array (
+            'Helpers\\' => 8,
+        ),
         'C' => 
         array (
             'Controller\\' => 11,
@@ -40,7 +44,7 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
     public static $prefixDirsPsr4 = array (
         'View\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/view',
+            0 => __DIR__ . '/../..' . '/src/view',
         ),
         'Vendor\\' => 
         array (
@@ -60,11 +64,15 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
         ),
         'Model\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/model',
+            0 => __DIR__ . '/../..' . '/src/model',
+        ),
+        'Helpers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/helpers',
         ),
         'Controller\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/controller',
+            0 => __DIR__ . '/../..' . '/src/controller',
         ),
         'Components\\' => 
         array (

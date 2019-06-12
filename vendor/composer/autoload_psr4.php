@@ -6,12 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'View\\' => array($baseDir . '/view'),
+    'View\\' => array($baseDir . '/src/view'),
     'Vendor\\' => array($vendorDir . ''),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
-    'Model\\' => array($baseDir . '/model'),
-    'Controller\\' => array($baseDir . '/controller'),
+    'Model\\' => array($baseDir . '/src/model'),
+    'Helpers\\' => array($baseDir . '/src/helpers'),
+    'Controller\\' => array($baseDir . '/src/controller'),
     'Components\\' => array($baseDir . '/components'),
 );

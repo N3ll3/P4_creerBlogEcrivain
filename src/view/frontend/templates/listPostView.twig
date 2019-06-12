@@ -3,9 +3,8 @@
 
     <p>
         <a href="index.php?action=connexion">
-            Connexion
+            Accès Espace Administrateur
         </a>
-
 
         <h1>Bienvenue sur mon Blog</h1>
     </p>
@@ -19,24 +18,23 @@
 
 {% block post %}
 
+
 {% for data in datas %}
     <h3>
 
         <a href="index.php?action=onePost&amp;id={{data.id }}">
-            {{ data.title}}
+            {{ data.title | raw}}
         </a>
 
         <em>le
             {{data.creation_date_fr}}</em>
     </h3>
     <p>
-        {{data.content}}<br/>
+        {{data.content | raw}}<br/>
     </p>
     <p>
         <em>
             <a href="index.php?action=onePost&amp;id=  {{data.id }}">Voir les commentaires
-
-
             </a>
         </em>
     </p>

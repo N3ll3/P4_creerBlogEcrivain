@@ -15,7 +15,7 @@ class FrontendController
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('view\frontend\templates');
+        $loader = new \Twig\Loader\FilesystemLoader('src\view\frontend\templates');
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
@@ -30,7 +30,7 @@ class FrontendController
         $datas = $posts->fetchAll();
 
         echo  $this->twig->render("listPostView.twig", [
-            'datas' => $datas
+            'datas' => $datas,
         ]);
         $posts->closeCursor();
     }
@@ -86,27 +86,4 @@ class FrontendController
             throw new \Exception('Aucun identifiant de billet envoyé');
         }
     }
-
-    // function comment()
-    // {
-    //     $commentManager = new CommentManager();
-    //     $comment = $commentManager->getComment($_GET['idComment']);
-    //     echo  $twig->render("modifyCommentView.twig", [
-    //         'comment' => $comment
-    //     ]);
-    // }
-
-    // function editComment($modifiedComment, $idComment, $postId)
-    // {
-    //     $commentManager = new CommentManager();
-    //     $updatedComment = $commentManager->updateComment($modifiedComment, $idComment);
-
-    //     if ($updatedComment == false) {
-    //         throw new Exception('Impossible de modifier le commentaire');
-    //     } else {
-    //         header('Location: index.php?action=post&id=' . $postId);
-    //     }
-    // }
-
-
 }

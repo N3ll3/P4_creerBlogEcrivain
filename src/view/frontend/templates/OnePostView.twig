@@ -9,13 +9,13 @@
 {% block post %}
     <div class="posts">
         <h3>
-            {{post.title}}
+            {{post.title | raw}}
             <em>le
                 {{post.creation_date_fr}}</em>
         </h3>
 
         <p>
-            {{post.content}}
+            {{post.content | raw}}
         </p>
     </div>
 {% endblock %}
@@ -41,7 +41,7 @@
             {{comment.comment_date_fr}}</p>
 
         <p>{{comment.comment}}</p>
-        {# <a href="index.php?action=comment&amp;idComment={{comment.id}}&amp;postId={{post.id}}">Modifier</a> #}
+
         <a href="index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}">
             Signaler ce commentaire</a>
     {% endfor %}

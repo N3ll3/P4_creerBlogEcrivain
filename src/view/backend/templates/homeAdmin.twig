@@ -15,18 +15,25 @@
                 Bienvenue dans votre espace Administrateur
             </h1>
 
+            <p>
+                <a href="index.php?action=logout">
+                    Se déconnecter
+                </a>
+            </p>
+
+
         {% endblock %}
 
         {% block writePosts %}
 
-            <a href="index.php?action=writePost.twig">
+            <a href="index.php?action=writePostAcces">
                 Ecrire un article</a>
 
         {% endblock %}
 
         {% block moderateComment %}
 
-            <a href="index.php?action=moderateComment.twig">
+            <a href="index.php?action=moderateComment">
                 Moderer commentaires
             </a>
 
