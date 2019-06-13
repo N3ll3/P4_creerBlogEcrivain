@@ -9,7 +9,7 @@ class ModerateCommentController
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\backend\templates');
+        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
@@ -26,7 +26,7 @@ class ModerateCommentController
                 'comments' => $flaggedComments,
             ]);
         } else {
-            echo 'Il n\'y a aucun commentaire à modérer';
+            throw new \Exception('Il n\'y a aucun commentaire à modérer');
         }
     }
 

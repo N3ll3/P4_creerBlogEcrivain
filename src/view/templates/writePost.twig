@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+
+        <link href="public/css/style.css" rel="stylesheet"/>
+        <title>Ecrire un article</title>
+        <script src="vendor/tinymce/tinymce/tinymce.js"></script>
+
+        <script type="text/javascript">
+            tinymce.init({selector: 'textarea#content', language: 'fr', menubar: false, toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help', entity_encoding: 'raw'});
+        </script>
+
+    </head>
+
+
+    <body>
+
+        {% block nav %}
+            <nav>
+                <ul>
+                    <li>
+                        Mon profil
+                    </li>
+                    <li>
+                        <a href="index.php?action=writePostAcces">Ecrire un article</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=moderateComment">Moderer commentaires</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=logout">Se deconnecter</a>
+                    </li>
+                </ul>
+            </nav>
+
+        {% endblock %}
+
+
+        <h1>
+            Ecrire un nouvel article
+        </h1>
+
+        <form action='index.php?action=writePost' method="post">
+            <h2>
+                Titre de votre article
+            </h2>
+            <textarea name="title"></textarea>
+            <h2>
+                Contenu de votre article
+            </h2>
+            <textarea id="content" name="content"></textarea>
+            <input type="submit"></body>
+    </body>
+</html>

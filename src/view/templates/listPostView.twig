@@ -1,0 +1,69 @@
+{% extends 'homeLayout.twig' %}
+{% block header %}
+    {% block nav %}
+        {% if session.isAuth is null %}
+
+            <nav>
+
+                <ul>
+                    <li><a href="index.php?action=connexion">Accès Espace Administrateur</a></li>
+                </ul>
+
+            </nav>
+
+        {% else %}
+            <nav>
+                <ul>
+                    <li>
+                        Mon profil
+                    </li>
+                    <li>
+                        <a href="index.php?action=writePostAcces">Ecrire un article</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=moderateComment">Moderer commentaires</a>
+                    </li>
+                    <li>
+                        <a href="index.php?action=logout">Se deconnecter</a>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
+    {% endblock %}
+
+    <p>
+        <h1>Bienvenue sur mon Blog</h1>
+    </p>
+
+    <p>
+        Petit layus de presentation du pourquoi du comment du blog
+    </p>
+
+    <p>Derniers billets du blog :</p>
+{% endblock %}
+
+{% block post %}
+
+
+{% for data in datas %}
+    <div id="post">
+        <h3>
+
+            <a href="index.php?action=onePost&amp;id={{data.id }}">
+                {{ data.title | raw}}
+            </a>
+
+            <em>le
+                {{data.creation_date_fr}}</em>
+        </h3>
+        <p>
+            {{data.content | raw}}<br/>
+        </p>
+        <p>
+            <em>
+                <a href="index.php?action=onePost&amp;id=  {{data.id }}">Voir les commentaires
+                </a>
+            </em>
+        </p>
+    </div>
+</p>{% endfor %}{% endblock %}

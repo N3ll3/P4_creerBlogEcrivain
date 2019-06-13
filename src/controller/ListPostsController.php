@@ -11,7 +11,7 @@ class ListPostsController
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\frontend\templates');
+        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
@@ -27,6 +27,7 @@ class ListPostsController
 
         echo  $this->twig->render("listPostView.twig", [
             'datas' => $datas,
+            'session' => $_SESSION
         ]);
         $posts->closeCursor();
     }

@@ -9,7 +9,7 @@ class TwigHelper
 
     private function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader(['view\backend\templates', 'view\frontend\templates']);
+        $loader = new \Twig\Loader\FilesystemLoader(['view\backend\templates', 'view\templates']);
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/

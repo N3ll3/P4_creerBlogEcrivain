@@ -11,7 +11,7 @@ class RegisterController
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\backend\templates');
+        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/

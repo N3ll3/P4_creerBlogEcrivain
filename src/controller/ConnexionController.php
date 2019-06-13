@@ -9,7 +9,7 @@ class ConnexionController
 
     public function __construct()
     {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\backend\templates');
+        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
         $this->twig = new \Twig\Environment($loader, [
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
@@ -41,11 +41,7 @@ class ConnexionController
         } else {
             if (!$isPasswordCorrect) {
                 echo 'Mot de passe incorrect <br> <a href="index.php?action=connexion"> Try Again</a> <br>';
-                // } elseif (isset($_POST['rememberMe'])) {
-                //     $_SESSION['isAuth'] = true;
-                //     $_SESSION['username'] = $userName;
-
-                //     echo $this->twig->render("homeAdmin.twig");
+                
             } else {
                 $_SESSION['isAuth'] = true;
                 echo $this->twig->render("homeAdmin.twig");

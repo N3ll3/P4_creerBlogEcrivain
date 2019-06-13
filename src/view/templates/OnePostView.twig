@@ -1,6 +1,42 @@
 {% extends 'homeLayout.twig' %}
-
+{% block title %}
+    <title>
+        Blog de Jean Forteroche, acteur et écrivain.
+    </title>
+{% endblock %}
 {% block header %}
+{% block nav %}
+    {% if session.isAuth is null %}
+
+        <nav>
+
+            <ul>
+                <li><a href="index.php?action=connexion">Accès Espace Administrateur</a></li>
+            </ul>
+
+        </nav>
+
+    {% else %}
+        <nav>
+            <ul>
+                <li>
+                    Mon profil
+                </li>
+                <li>
+                    <a href="index.php?action=writePostAcces">Ecrire un article</a>
+                </li>
+                <li>
+                    <a href="index.php?action=moderateComment">Moderer commentaires</a>
+                </li>
+                <li>
+                    <a href="index.php?action=logout">Se deconnecter</a>
+                </li>
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}
+
+
     <h1>Mon super blog !</h1>
     <p>
         <a href="index.php">Retour à la liste des billets</a>
