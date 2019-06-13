@@ -44,16 +44,27 @@ class CommentManager extends Manager
         return $isFlagged;
     }
 
-    // public function updateComment($modifiedComment, $idComment)
-    // {
-    //     $db = $this->dbConnect();
-    //     $newComment = $db->prepare('UPDATE comments SET comment=:modifiedComment, comment_date = NOW() WHERE id=:idComment');
-    //     $updatedComment = $newComment->execute(array(
-    //         'modifiedComment' => $modifiedComment,
-    //         'idComment' => $idComment,
-    //     ));
+    public function getCommentsFlagged()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT * FROM comments WHERE flagged > 2 ORDER BY flagged');
+        $commentsFlagged = $req->fetchAll();
+        return $commentsFlagged;
+    }
 
-    //     return $updatedComment;
-    // }
+    public function deleteComment($idComment)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM comments WHERE id =:idComment');
+        $commentDeleted = $req->execute(array('idComment' => $idComment));
+        return $commentDeleted;
+    }
 
+    public function unflagComment($idComment)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE comments SET flagged = 0 WHERE id=:idComment');
+        $commentUnflagged = $req->execute(array('idComment' => $idComment));
+        return $commentUnflagged;
+    }
 }

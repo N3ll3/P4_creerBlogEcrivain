@@ -3,7 +3,6 @@ namespace Controller;
 
 use Model\PostManager;
 
-require_once('vendor/autoload.php');
 
 class ListPostsController
 {

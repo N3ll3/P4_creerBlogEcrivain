@@ -6,8 +6,10 @@ use Controller\ConnexionController;
 use Controller\RegisterController;
 use Controller\HomeAdminController;
 use Controller\WritePostController;
+use Controller\ModerateCommentController;
 
 require('vendor/autoload.php');
+\session_start();
 
 // Init controllers
 $listPostsController = new ListPostsController();
@@ -16,16 +18,21 @@ $connexionController = new ConnexionController();
 $registerController = new RegisterController();
 $homeAdminController = new HomeAdminController();
 $writePostController = new WritePostController();
+$moderateCommentController = new ModerateCommentController();
 
 try {
     if (isset($_GET['action'])) {
 
         switch ($_GET['action']) {
 
-                // FrontEnd
+                // Public
+
+                // Page Listing Posts
             case 'listPosts':
-                $listPostController->listPosts();
+                $listPostsController->listPosts();
                 break;
+
+                // Page One POst and Comments
             case 'onePost':
                 $commentsController->onePost();
                 break;
@@ -36,7 +43,9 @@ try {
                 $commentsController->flagComment($_GET['idComment']);
                 break;
 
-                // Backend
+                // Admin
+
+                // Page Connexion
             case 'connexion':
                 $connexionController->connexionPage();
                 break;
@@ -47,19 +56,35 @@ try {
                 $connnexionController->accesRegister();
                 break;
 
+                // Sign Up Page
             case 'register':
                 $registerController->register();
                 break;
 
+                // Page Home Admin
             case 'writePostAcces':
-                $homeAdminController->writePostAcces();
+                $homeAdminController->accesWritePost();
                 break;
             case 'logout':
                 $homeAdminController->logout();
                 break;
 
+                // Page Write Post
             case 'writePost':
                 $writePostController->writePost($_POST['title'], $_POST['content']);
+                break;
+
+                // Page Moderate comment
+            case 'moderateComment':
+                $moderateCommentController->listFlaggedComments();
+                break;
+
+            case 'deleteComment':
+                $moderateCommentController->deleteComment($_GET['idComment']);
+                break;
+
+            case 'unflagComment':
+                $moderateCommentController->approveComment($_GET['idComment']);
                 break;
 
                 //Default

@@ -16,19 +16,28 @@ class HomeAdminController
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
-    public function writePostAcces()
+    public function accesWritePost()
     {
-        echo $this->twig->render("writePost.twig");
+        if (isset($_SESSION['isAuth'])) {
+            echo $this->twig->render("writePost.twig");
+        } else {
+            echo $this->twig->render("connexionInterface.twig");
+        }
     }
 
-    public function moderateComment()
+    public function accesModerateComment()
     {
-        echo $this->twig->render("moderateComment.twig");
+        if (isset($_SESSION['isAuth'])) {
+            echo $this->twig->render("writePost.twig");
+        } else {
+            echo $this->twig->render("moderateComment.twig");
+        }
     }
 
     public function logout()
     {
-        unset($_SESSION); // js
+        $_SESSION = array();
+        session_destroy();
         header('Location:index.php?action=listPosts');
     }
 }

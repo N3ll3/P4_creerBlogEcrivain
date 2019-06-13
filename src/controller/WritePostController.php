@@ -4,8 +4,6 @@ namespace Controller;
 use Model\PostManager;
 
 
-\session_start();
-
 class WritePostController
 {
 

@@ -19,14 +19,8 @@ class ConnexionController
 
     public function connexionPage()
     {
-
-        if (isset($_SESSION['username']) and isset($_SESSION['psw'])) {
-            $username = $_SESSION['username']; // cookies
-            $psw = $_SESSION['psw']; //cookies
-            echo $this->twig->render("connexionInterface.twig", [
-                'username' => $username,
-                'psw' => $psw
-            ]);
+        if (isset($_SESSION['isAuth'])) {
+            echo $this->twig->render("homeAdmin.twig");
         } else {
             echo $this->twig->render("connexionInterface.twig");
         }
@@ -47,15 +41,12 @@ class ConnexionController
         } else {
             if (!$isPasswordCorrect) {
                 echo 'Mot de passe incorrect <br> <a href="index.php?action=connexion"> Try Again</a> <br>';
-            } elseif (isset($_POST['rememberMe'])) {
+                // } elseif (isset($_POST['rememberMe'])) {
+                //     $_SESSION['isAuth'] = true;
+                //     $_SESSION['username'] = $userName;
 
-                $_SESSION['isAuth'] = true;
-                $_SESSION['username'] = $userName; //cookies localStorage js
-                $_SESSION['psw'] = $psw; //hash
-
-                echo $this->twig->render("homeAdmin.twig");
+                //     echo $this->twig->render("homeAdmin.twig");
             } else {
-
                 $_SESSION['isAuth'] = true;
                 echo $this->twig->render("homeAdmin.twig");
             }
