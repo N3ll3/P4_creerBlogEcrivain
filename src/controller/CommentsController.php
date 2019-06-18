@@ -19,6 +19,7 @@ class CommentsController
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
         ]);
+        $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
@@ -34,7 +35,8 @@ class CommentsController
 
             echo  $this->twig->render("OnePostView.twig", [
                 'post' => $post,
-                'comments' => $comments
+                'comments' => $comments,
+
             ]);
             $commentsData->closeCursor();
         } else {

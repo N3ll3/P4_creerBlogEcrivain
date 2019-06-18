@@ -16,6 +16,7 @@ class ListPostsController
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
         ]);
+        $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
@@ -27,7 +28,6 @@ class ListPostsController
 
         echo  $this->twig->render("listPostView.twig", [
             'datas' => $datas,
-            'session' => $_SESSION
         ]);
         $posts->closeCursor();
     }

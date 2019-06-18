@@ -14,10 +14,11 @@ class ConnexionController
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
         ]);
+
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
-    public function connexionPage()
+    public function connexion()
     {
         if (isset($_SESSION['isAuth'])) {
             echo $this->twig->render("homeAdmin.twig");
@@ -41,16 +42,10 @@ class ConnexionController
         } else {
             if (!$isPasswordCorrect) {
                 echo 'Mot de passe incorrect <br> <a href="index.php?action=connexion"> Try Again</a> <br>';
-                
             } else {
                 $_SESSION['isAuth'] = true;
-                echo $this->twig->render("homeAdmin.twig");
+                \header('Location:index.php?action=connexion');
             }
         }
-    }
-
-    public function accesRegister()
-    {
-        echo $this->twig->render("register.twig");
     }
 }

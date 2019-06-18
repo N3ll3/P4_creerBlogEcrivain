@@ -14,6 +14,7 @@ class TwigHelper
             'debug' => true,
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
         ]);
+        $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 

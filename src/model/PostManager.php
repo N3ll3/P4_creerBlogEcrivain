@@ -32,4 +32,17 @@ class PostManager extends Manager
 
         return $newPost;
     }
+
+    public function modifyPost($title, $content, $idPost)
+    {
+        $db = $this->dbConnect();
+        $updatedPost = $db->prepare('UPDATE posts SET title=:modifiedTitle, content= :modifiedContent ,creation_date = NOW() WHERE id=:idPost');
+        $modifiedPost = $updatedPost->execute(array(
+            'modifiedTitle' => $title,
+            'modifiedContent' => $content,
+            'idPost' => $idPost
+        ));
+
+        return $modifiedPost;
+    }
 }

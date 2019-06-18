@@ -6,7 +6,7 @@
             <nav>
 
                 <ul>
-                    <li><a href="index.php?action=connexion">Accès Espace Administrateur</a></li>
+                    <li><a href="index.php?action=connexion">Se connecter</a></li>
                 </ul>
 
             </nav>
@@ -14,18 +14,10 @@
         {% else %}
             <nav>
                 <ul>
-                    <li>
-                        Mon profil
-                    </li>
-                    <li>
-                        <a href="index.php?action=writePostAcces">Ecrire un article</a>
-                    </li>
-                    <li>
-                        <a href="index.php?action=moderateComment">Moderer commentaires</a>
-                    </li>
-                    <li>
-                        <a href="index.php?action=logout">Se deconnecter</a>
-                    </li>
+                    <li><a href="index.php?action=connexion">Mon profil</a></li>
+                    <li><a href="index.php?action=writePostAcces">Ecrire un article</a></li>
+                    <li><a href="index.php?action=moderateComment">Moderer commentaires</a></li>
+                    <li><a href="index.php?action=logout">Se deconnecter</a></li>
                 </ul>
             </nav>
         {% endif %}
@@ -47,6 +39,11 @@
 
 {% for data in datas %}
     <div id="post">
+        {% if session.isAuth %}
+            <a href="index.php?action=modifyPostAcces&amp;idPost={{data.id }}">
+                Modifier l'article
+            </a>
+        {% endif %}
         <h3>
 
             <a href="index.php?action=onePost&amp;id={{data.id }}">

@@ -47,18 +47,11 @@ try {
 
                 // Page Connexion
             case 'connexion':
-                $connexionController->connexionPage();
-                break;
-            case 'signIn':
-                $connexionController->signIn();
-                break;
-            case 'accesRegister':
-                $connnexionController->accesRegister();
+                $connexionController->connexion();
                 break;
 
-                // Sign Up Page
-            case 'register':
-                $registerController->register();
+            case 'signIn':
+                $connexionController->signIn();
                 break;
 
                 // Page Home Admin
@@ -68,10 +61,17 @@ try {
             case 'logout':
                 $homeAdminController->logout();
                 break;
+            case 'modifyPostAcces':
+                $homeAdminController->accesModifyPost();
+                break;
 
                 // Page Write Post
             case 'writePost':
                 $writePostController->writePost($_POST['title'], $_POST['content']);
+                break;
+
+            case 'modifyPost':
+                $writePostController->modifyPost($_POST['title'], $_POST['content'], $_GET['idPost']);
                 break;
 
                 // Page Moderate comment

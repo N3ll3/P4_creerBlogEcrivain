@@ -5,36 +5,29 @@
     </title>
 {% endblock %}
 {% block header %}
-{% block nav %}
-    {% if session.isAuth is null %}
+    {% block nav %}
+        {% if session.isAuth is null %}
 
-        <nav>
+            <nav>
 
-            <ul>
-                <li><a href="index.php?action=connexion">Accès Espace Administrateur</a></li>
-            </ul>
+                <ul>
+                    <li><a href="index.php?action=connexion">Se connecter</a></li>
+                </ul>
 
-        </nav>
+            </nav>
 
-    {% else %}
-        <nav>
-            <ul>
-                <li>
-                    Mon profil
-                </li>
-                <li>
-                    <a href="index.php?action=writePostAcces">Ecrire un article</a>
-                </li>
-                <li>
-                    <a href="index.php?action=moderateComment">Moderer commentaires</a>
-                </li>
-                <li>
-                    <a href="index.php?action=logout">Se deconnecter</a>
-                </li>
-            </ul>
-        </nav>
-    {% endif %}
-{% endblock %}
+        {% else %}
+            <nav>
+                <ul>
+                    <li><a href="index.php?action=connexion">Mon profil</a></li>
+                    <li><a href="index.php?action=writePostAcces">Ecrire un article</a></li>
+                    <li><a href="index.php?action=moderateComment">Moderer commentaires</a></li>
+                    <li><a href="index.php?action=logout">Se deconnecter</a></li>
+                </ul>
+            </nav>
+
+        {% endif %}
+    {% endblock %}
 
 
     <h1>Mon super blog !</h1>

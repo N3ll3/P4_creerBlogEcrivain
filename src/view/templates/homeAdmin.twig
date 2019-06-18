@@ -14,14 +14,17 @@
             <h1>
                 Bienvenue dans votre espace Administrateur
             </h1>
+            {% block nav %}
+                <nav>
+                    <ul>
+                        <li><a href="index.php?action=connexion">Mon profil</a></li>
+                        <li><a href="index.php?action=writePostAcces">Ecrire un article</a></li>
+                        <li><a href="index.php?action=moderateComment">Moderer commentaires</a></li>
+                        <li><a href="index.php?action=logout">Se deconnecter</a></li>
+                    </ul>
+                </nav>
 
-            <p>
-                <a href="index.php?action=logout">
-                    Se déconnecter
-                </a>
-            </p>
-
-
+            {% endblock %}
         {% endblock %}
 
         {% block writePosts %}
