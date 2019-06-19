@@ -1,26 +1,35 @@
-h1,
-h3 {
+
+
+.intro {
+    text-align: center;
+    margin: auto;
+    padding-top: 15vh;
+}
+
+
+.postTitle {
+    border: solid;
+    background-color: green;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-bottom: 0px;
+    color: black;
+    text-align: center;
+    padding: 1%;
+    border-radius: 0.2em;
+}
+
+.date {
     text-align: center;
 }
 
-h3 {
-    background-color: black;
-    color: white;
-    font-size: 0.9em;
-    margin-bottom: 0px;
+.post p {
+    background-color: white;
 }
 
-.posts p {
-    background-color: #CCCCCC;
-    margin-top: 0px;
-}
+.post {
 
-.posts {
-    width: 70%;
-    margin: auto;
-}
+    border: solid 1px grey;
+    padding: 2%;
 
-a {
-    text-decoration: none;
-    color: blue;
 }

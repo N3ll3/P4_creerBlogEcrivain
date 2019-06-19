@@ -1,66 +1,59 @@
 {% extends 'homeLayout.twig' %}
+
+{% block title %}{% endblock %}
+
 {% block header %}
-    {% block nav %}
-        {% if session.isAuth is null %}
+{% block nav %}
+{% if session.isAuth is null %}
 
-            <nav>
 
-                <ul>
-                    <li><a href="index.php?action=connexion">Se connecter</a></li>
-                </ul>
+<ul class="nav navbar-nav">
+    <li>
+        <a href="index.php?action=connexion">Se connecter</a>
+    </li>
+</ul>
 
-            </nav>
 
-        {% else %}
-            <nav>
-                <ul>
-                    <li><a href="index.php?action=connexion">Mon profil</a></li>
-                    <li><a href="index.php?action=writePostAcces">Ecrire un article</a></li>
-                    <li><a href="index.php?action=moderateComment">Moderer commentaires</a></li>
-                    <li><a href="index.php?action=logout">Se deconnecter</a></li>
-                </ul>
-            </nav>
-        {% endif %}
-    {% endblock %}
+{% else %}
 
+{{include("navbar.html.twig") }}
+
+{% endif %}
+{% endblock %}
+
+<div class="intro">
     <p>
-        <h1>Bienvenue sur mon Blog</h1>
+        Ici vous pouvez découvrir en avant première les premiers chapitres de mon nouveau roman :
+        <h1>
+            Billet simple pour l'Alaska</h1>
     </p>
+</div>
 
-    <p>
-        Petit layus de presentation du pourquoi du comment du blog
-    </p>
-
-    <p>Derniers billets du blog :</p>
 {% endblock %}
 
 {% block post %}
 
-
 {% for data in datas %}
-    <div id="post">
-        {% if session.isAuth %}
-            <a href="index.php?action=modifyPostAcces&amp;idPost={{data.id }}">
-                Modifier l'article
-            </a>
-        {% endif %}
-        <h3>
 
-            <a href="index.php?action=onePost&amp;id={{data.id }}">
-                {{ data.title | raw}}
-            </a>
+<div class="post container">
 
-            <em>le
-                {{data.creation_date_fr}}</em>
-        </h3>
-        <p>
-            {{data.content | raw}}<br/>
-        </p>
-        <p>
-            <em>
-                <a href="index.php?action=onePost&amp;id=  {{data.id }}">Voir les commentaires
-                </a>
-            </em>
-        </p>
-    </div>
-</p>{% endfor %}{% endblock %}
+    {% if session.isAuth %}
+    <a href="index.php?action=modifyPostAcces&amp;idPost={{data.id }}">
+        Modifier le chapitre
+    </a>{% endif %}
+    <h3 class="postTitle"> {{ data.title | raw}} </h3>
+
+    <p class="date">Publié le {{data.creation_date | date("d/m/Y") }}</p>
+
+    <p class "content">
+        {{data.content | raw }}</p>
+    <p>
+        <em>
+            <a href="index.php?action=onePost&amp;id=  {{data.id }}">Voir les commentaires
+            </a>
+        </em>
+    </p>
+</div>
+</p>
+{% endfor %}
+{% endblock %}

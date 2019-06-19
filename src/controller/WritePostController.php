@@ -7,18 +7,6 @@ use Model\PostManager;
 class WritePostController
 {
 
-    // public $twig;
-
-    // public function __construct()
-    // {
-    //     $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
-    //     $this->twig = new \Twig\Environment($loader, [
-    //         'debug' => true,
-    //         'cache' => false /*__DIR__.'/view/frontend/tmp'*/
-    //     ]);
-    //     $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    // }
-
     public function writePost($title, $content)
     {
         if (!empty($_POST['title']) and !empty($_POST['content'])) {

@@ -1,51 +1,30 @@
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <meta charset="utf-8"/>
-
-        <link href="public/css/style.css" rel="stylesheet"/>
-        <title>Ecrire un article</title>
-        <script src="vendor/tinymce/tinymce/tinymce.js"></script>
-
-        <script type="text/javascript">
-            tinymce.init({selector: 'textarea#content', language: 'fr', menubar: false, toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help', entity_encoding: 'raw'});
-        </script>
-
-    </head>
+{% extends 'homeLayout.twig' %}
 
 
-    <body>
+{% block header %}
+    {% block nav %}
+        {{include("navbar.html.twig") }}
 
-        {% block nav %}
+    {% endblock %}
+    <h1>
+        Modifier un chapitre
+    </h1>
 
-            <nav>
-                <ul>
-                    <li><a href="index.php?action=connexion">Mon profil</a></li>
-                    <li><a href="index.php?action=writePostAcces">Ecrire un article</a></li>
-                    <li><a href="index.php?action=moderateComment">Moderer commentaires</a></li>
-                    <li><a href="index.php?action=logout">Se deconnecter</a></li>
-                </ul>
-            </nav>
+{% endblock %}
 
-        {% endblock %}
-    </body>
-</html>
+{% block post %}
 
 
-<h1>
-    Modifier un article
-</h1>
-
-<form action='index.php?action=modifyPost&amp;idPost={{post.id}}' method="post">
-    <h2>
-        Titre de votre article
-    </h2>
-    <textarea name="title">
-        {{post.title}}</textarea>
-    <h2>
-        Contenu de votre article
-    </h2>
-    <textarea id="content" name="content">{{post.content}}</textarea>
-    <input type="submit">
-</form>
+    <form action='index.php?action=modifyPost&amp;idPost={{post.id}}' method="post">
+        <h2>
+            Titre de votre chapitre
+        </h2>
+        <textarea name="title">
+            {{post.title}}</textarea>
+        <h2>
+            Contenu de votre chapitre
+        </h2>
+        <textarea id="content" name="content">{{post.content}}</textarea>
+        <input type="submit">
+    </form>
+{% endblock %}

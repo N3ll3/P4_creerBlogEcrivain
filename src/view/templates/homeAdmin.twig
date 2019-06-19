@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<html>
+{% extends 'homeLayout.twig' %}
+{% block title %}{% endblock %}
 
-    <head>
-        <meta charset="utf-8"/>
+{% block header %}
 
-        <link href="public/css/style.css" rel="stylesheet"/>
-        <title>Blog d'un ecrivain</title>
-    </head>
+    {% block nav %}
 
-    <body>
+        {{include("navbar.html.twig") }}
 
-        {% block header %}
-            <h1>
-                Bienvenue dans votre espace Administrateur
-            </h1>
-            {% block nav %}
-                <nav>
-                    <ul>
-                        <li><a href="index.php?action=connexion">Mon profil</a></li>
-                        <li><a href="index.php?action=writePostAcces">Ecrire un article</a></li>
-                        <li><a href="index.php?action=moderateComment">Moderer commentaires</a></li>
-                        <li><a href="index.php?action=logout">Se deconnecter</a></li>
-                    </ul>
-                </nav>
+    {% endblock %}
 
-            {% endblock %}
-        {% endblock %}
+    <h1>
+        Bienvenue dans votre espace Administrateur
+    </h1>
 
-        {% block writePosts %}
+{% endblock %}
 
-            <a href="index.php?action=writePostAcces">
-                Ecrire un article</a>
+{% block post %}
 
-        {% endblock %}
+    <a href="index.php?action=writePostAcces">
+        Ecrire un article</a>
 
-        {% block moderateComment %}
+{% endblock %}
 
-            <a href="index.php?action=moderateComment">
-                Moderer commentaires
-            </a>
+{% block comment %}
 
-        {% endblock %}
+    <a href="index.php?action=moderateComment">
+        Moderer commentaires
+    </a>
 
-
-        {# <footer>Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer> #}
-    </body>
-</html>
+{% endblock %}

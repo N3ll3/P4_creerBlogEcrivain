@@ -4,17 +4,50 @@
     <head>
         <meta charset="utf-8"/>
 
-        <link href="public/css/style.css" rel="stylesheet"/> {% block title %}{% endblock %}
+        <link
+        href="public/css/style.css" rel="stylesheet"/>
+        {# <link href="vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/> #}
 
-        </head>
-        <body>
+        <script src="vendor/tinymce/tinymce/tinymce.js"></script>
+
+        <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" rel="stylesheet">
+
+
+        <script type="text/javascript">
+            tinymce.init({
+                selector: 'textarea#content',
+                language: 'fr',
+                menubar: false,
+                width: 800,
+                height: 1000,
+                toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+                entity_encoding: 'raw'
+            });
+        </script>
+        {% block title %}{% endblock %}
+
+    </head>
+    <body>
+        <header>
             {% block header %}
-                {% block nav %}{% endblock %}
+                <nav class="navbar navbar-default navbar-right">
+                    <div class="container">
+                        {% block nav %}{% endblock %}
+                    </div>
+                </nav>
             {% endblock %}
+        </header>
+        <div class="chapter"> {% block post %}{% endblock %}
+            </div>
+            <div class="comment"> {% block comment %}{% endblock %}
+                </div>
 
-            {% block post %}{% endblock %}
-            {% block comment %}{% endblock %}
-            {# <footer>Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer> #}
-        </body>
-    </html>
-</body>
+                {% block signIn %}{% endblock %}
+                {% block pagination %}{% endblock %}
+
+                <footer>
+                    Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
+                <script src="public/js/app.js"></script>
+                <script src="vendor/components/jquery/jquery.js"></script>
+            </body>
+        </html>
