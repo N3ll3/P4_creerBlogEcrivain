@@ -1,35 +1,125 @@
-
+body {
+    background-image: url("../images/photoAlaska.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .intro {
     text-align: center;
-    margin: auto;
-    padding-top: 15vh;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 15px;
+    color: #272F28;
+    background-color: #C2CBD0;
+    padding-bottom: 10px;
+    border-radius: 0.3em;
 }
 
+.comment {
+    border: solid 1px#3A82C6;
+    border-radius: 0.3em;
+    padding: 5px;
+    background-color: #C2CBD0;
+    color: #272F28;
+    margin-top: 10px;
+}
+
+.flag {
+    border: solid, red;
+    box-shadow: 1px;
+    display: block;
+}
+
+.flagged {
+    color: red;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+.formComment {
+    margin-bottom: 20px;
+}
 
 .postTitle {
     border: solid;
-    background-color: green;
+    background-color: #497699;
     font-size: 1.5em;
     font-weight: 300;
     margin-bottom: 0px;
-    color: black;
+    color: white;
     text-align: center;
     padding: 1%;
     border-radius: 0.2em;
+}
+
+.postTitle a,
+.postTitle a:visited,
+.postTitle a:active,
+.postTitle a:hover {
+    color: white;
+    text-decoration: none;
 }
 
 .date {
     text-align: center;
 }
 
-.post p {
-    background-color: white;
+.post {
+    border: solid 1px#3A82C6;
+    border-radius: 0.3em;
+    padding: 2%;
+    background-color: #C2CBD0;
+    color: #272F28;
 }
 
-.post {
+.accesAdmin {
 
-    border: solid 1px grey;
+    background-color: #C2CBD0;
+    color: #272F28;
+    border: solid 1px#3A82C6;
+    border-radius: 1.5em;
+
+}
+
+.accesAdmin a {
+    text-decoration: none;
+}
+
+h2 {
+    border: solid 1px#3A82C6;
     padding: 2%;
+    background-color: #C2CBD0;
+    color: #272F28;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
 
+form {
+    width: 50%;
+    margin: auto;
+    color: #272F28;
+    background-color: #C2CBD0;
+    padding: 2%;
+    text-align: center;
+}
+
+
+.formComment textarea {
+    width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+
+}
+
+.formComment input {
+    width: 80%;
+    height: auto;
+}
+
+.modifChap {
+    line-height: 10px;
 }

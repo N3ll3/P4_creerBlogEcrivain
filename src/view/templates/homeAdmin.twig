@@ -1,31 +1,34 @@
 {% extends 'homeLayout.twig' %}
 {% block title %}{% endblock %}
 
-{% block header %}
 
-    {% block nav %}
+{% block nav %}
 
-        {{include("navbar.html.twig") }}
-
-    {% endblock %}
-
-    <h1>
-        Bienvenue dans votre espace Administrateur
-    </h1>
+    {{include("navbar.html.twig") }}
 
 {% endblock %}
 
-{% block post %}
 
-    <a href="index.php?action=writePostAcces">
-        Ecrire un article</a>
+{% block sectionIntro %}
+
+    <h1>Espace Administrateur</h1>
 
 {% endblock %}
 
-{% block comment %}
 
-    <a href="index.php?action=moderateComment">
-        Moderer commentaires
-    </a>
+{% block admin %}
+    <div class="row">
+        <div class="accesAdmin col-md-4 justify-content-center">
 
+            <a href="index.php?action=writePostAcces">
+                Ecrire un article</a>
+        </div>
+
+        <div class="accesAdmin offset-md-2 col-md-4 justify-content-center">
+
+            <a href="index.php?action=moderateComment">
+                Modérer commentaires
+            </a>
+        </div>
+    </div>
 {% endblock %}

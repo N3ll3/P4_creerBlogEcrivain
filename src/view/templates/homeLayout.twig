@@ -4,16 +4,14 @@
     <head>
         <meta charset="utf-8"/>
 
-        <link
-        href="public/css/style.css" rel="stylesheet"/>
-        {# <link href="vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/> #}
+        <link href="public/css/style.css" rel="stylesheet"/>
 
         <script src="vendor/tinymce/tinymce/tinymce.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" rel="stylesheet">
 
-
-        <script type="text/javascript">
+        <script>
             tinymce.init({
                 selector: 'textarea#content',
                 language: 'fr',
@@ -29,25 +27,36 @@
     </head>
     <body>
         <header>
-            {% block header %}
-                <nav class="navbar navbar-default navbar-right">
-                    <div class="container">
-                        {% block nav %}{% endblock %}
+
+            <nav class="navbar navbar-inverse">
+
+                <div class="container-fluid"> {% block nav %}{% endblock %}
                     </div>
                 </nav>
-            {% endblock %}
-        </header>
-        <div class="chapter"> {% block post %}{% endblock %}
-            </div>
-            <div class="comment"> {% block comment %}{% endblock %}
-                </div>
 
-                {% block signIn %}{% endblock %}
-                {% block pagination %}{% endblock %}
+            </header>
+            <section class="intro"> {% block sectionIntro %}{% endblock %}
+                </section>
 
-                <footer>
-                    Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
-                <script src="public/js/app.js"></script>
-                <script src="vendor/components/jquery/jquery.js"></script>
-            </body>
-        </html>
+                <section class="main">
+                    <article class="posts"> {% block post %}{% endblock %}
+                        </article>
+                        <div class="formComment"> {% block form %}{% endblock %}
+                            </div>
+
+
+                            <div id="comments"> {% block comment %}{% endblock %}
+                                </div>
+                            </section>
+                            <div class="admin"> {% block admin %}{% endblock %}
+                                </div>
+
+                                {% block pagination %}{% endblock %}
+
+                                <footer>
+                                    Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
+
+                                {% block script %}{% endblock %}
+
+                            </body>
+                        </html>

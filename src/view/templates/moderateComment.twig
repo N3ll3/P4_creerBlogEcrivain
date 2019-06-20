@@ -1,12 +1,14 @@
 {% extends 'homeLayout.twig' %}
 
 {% block title %}{% endblock %}
-{% block header %}
 
-    {% block nav %}
-        {{include("navbar.html.twig") }}
 
-    {% endblock %}
+{% block nav %}
+    {{include("navbar.html.twig") }}
+
+{% endblock %}
+
+{% block sectionIntro %}
     <h1>
         Modération des Commentaires
     </h1>
