@@ -1,7 +1,12 @@
-$("#flag").click(function() {
+let actionFlag = "flag";
+let idComment = $("#idCommentHidden").val();
+
+$("#flag").submit(function(e) {
+  e.preventDefault();
+  console.log();
   $.ajax({
-    url:
-      "index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}",
-    type: "POST"
+    url: "index.php",
+    type: "GET",
+    data: "action=" + actionFlag + "&idComment=" + idComment
   });
 });

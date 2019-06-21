@@ -97,9 +97,12 @@
 
     <p>{{comment.comment}}</p>
 
+    <form id="flag">
+        <input id="idCommentHidden" name="idComment" type="hidden" value="{{comment.id | raw }}"/>
 
-    <a id="flag" href="index.php?action=flag&amp;idComment={{comment.id}}&amp;postId={{post.id}}">
-        Signaler ce commentaire</a>
-
-
-</div>{% endfor %}{% endblock %}
+        <button type="submit">
+            Signaler ce commenaire
+        </button>
+    </form>
+  
+</div>{% endfor %}{% endblock %}{% block script %}<script src="public/js/flag.js"></script>{% endblock %}
