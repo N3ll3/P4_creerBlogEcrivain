@@ -68,9 +68,6 @@ class CommentsController
             $commentManager = new CommentManager();
             $comment = $commentManager->getComment($idComment);
             $commentManager->isFlagged($idComment);
-            // header('Location: index.php?action=onePost&id=' . $comment['post_id']);
-            //requete AJAX 
-            // API fetch(url)
         } else {
             throw new \Exception('Aucun identifiant de billet envoyé');
         }
