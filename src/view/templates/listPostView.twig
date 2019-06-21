@@ -45,7 +45,7 @@
 
 {% for data in datas %}
 
-    <div class="post container">
+    <article class="post container">
 
         {% if session.isAuth %}
             <a href="index.php?action=modifyPostAcces&amp;idPost={{data.id }}">
@@ -60,13 +60,17 @@
         <p class="date">Publié le
             {{data.creation_date | date("d/m/Y") }}</p>
 
-        <p class="content">
-            {{data.content | raw }}</p>
-        <p>
+        <div class="content">
+            {{data.content | raw }}
+
+        </div>
+
+        <p class="toBeContinued">
             <em>
-                <a href="index.php?action=onePost&amp;id=  {{data.id }}">Voir les commentaires
+                <a href="index.php?action=onePost&amp;id=  {{data.id }}">
+                    Lire la suite et Voir les commentaires
                 </a>
             </em>
         </p>
-    </div>
+    </article>
 </p>{% endfor %}{% endblock %}
