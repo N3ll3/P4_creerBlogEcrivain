@@ -52,6 +52,14 @@ class CommentManager extends Manager
         return $commentsFlagged;
     }
 
+    public function getNumberOfCommentsFlagged()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) as nbFlagged FROM comments WHERE flagged>3');
+        $nbCommentToModerate = $req->fetch();
+        return $nbCommentToModerate[0];
+    }
+
     public function deleteComment($idComment)
     {
         $db = $this->dbConnect();

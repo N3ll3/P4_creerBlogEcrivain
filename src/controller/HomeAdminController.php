@@ -2,6 +2,7 @@
 namespace Controller;
 
 use Model\PostManager;
+use Model\CommentManager;
 
 class HomeAdminController
 {
