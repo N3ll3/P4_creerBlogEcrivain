@@ -15,7 +15,6 @@ require('vendor/autoload.php');
 $listPostsController = new ListPostsController();
 $commentsController = new CommentsController();
 $connexionController = new ConnexionController();
-$registerController = new RegisterController();
 $homeAdminController = new HomeAdminController();
 $writePostController = new WritePostController();
 $moderateCommentController = new ModerateCommentController();

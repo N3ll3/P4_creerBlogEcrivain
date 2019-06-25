@@ -29,21 +29,24 @@
                 Contenu de votre chapitre
             </h2>
             <textarea id="content" name="content"></textarea>
-
-        {% else %}
-            <form id="writePost" method="post">
-                <h2 class="main">
-                    Titre de votre chapitre
-                </h2>
-                <textarea id="titleForm" name="title">
-                    {{post.title}}</textarea>
-                <h2 class="main">
-                    Contenu de votre chapitre
-                </h2>
-                <textarea id="content" name="content">{{post.content}}</textarea>
-
-            {% endif %}
-
             <input class="btn btn-secondary" formaction="index.php?action=publishPost" id="published" type="submit" value="Publier"></input>
-        <input class="btn btn-secondary" formaction="index.php?action=savePost" id="draft" type="submit" value="Conserver comme brouillon"></input>
-    <input class="btn btn-secondary" formaction="index.php?action=deletePost&amp;idPost={{post.id}}" id="delete" type="submit" value="Supprimer"></input></form>{% endblock %}
+        <input class="btn btn-secondary" formaction="index.php?action=savePost" type="submit" value="Conserver comme brouillon"></input>
+
+
+{% else %}
+    <form id="writePost" method="post">
+        <h2 class="main">
+            Titre de votre chapitre
+        </h2>
+        <textarea id="titleForm" name="title">
+            {{post.title}}</textarea>
+        <h2 class="main">
+            Contenu de votre chapitre
+        </h2>
+        <textarea id="content" name="content">{{post.content}}</textarea>
+
+        <input class="btn btn-secondary" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit" value="Publier"></input>
+         <input class="btn btn-secondary" formaction="index.php?action=deletePost&amp;idPost={{post.id}}" type="submit" value="Supprimer"></input>
+    {% endif %}
+    </form>
+    {% endblock %}

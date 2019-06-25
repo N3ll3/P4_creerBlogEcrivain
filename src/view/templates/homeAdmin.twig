@@ -43,22 +43,25 @@
 {% endblock %}
 {% block post %}
     <div class="admin">
-        {% if data %}
+        {% if datas %}
             <h4 class="main text-center">
                 Chapitre en cours de Rédaction
             </h4>
-            <article class="post container main">
 
-                <h3 class="postTitle">
-                    {{data.title | raw }}
-                </h3>
+            {% for data in datas %}
+                <article class="post container main">
 
-                <div class="content">
-                    {{data.content | raw }}
-                </div>
-                <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
+                    <h3 class="postTitle">
+                        {{data.title | raw }}
+                    </h3>
 
-            </article>
+                    <div class="content">
+                        {{data.content | raw }}
+                    </div>
+                    <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
+                </article>
+                <hr>
+            {% endfor %}
         {% else %}
             <p class="main text-center">
                 Vous n'avez aucun chapitre en cours de rédaction

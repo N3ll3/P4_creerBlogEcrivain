@@ -9,18 +9,24 @@ class PostManager extends Manager
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, creation_date FROM posts WHERE published = 1 ORDER BY id LIMIT 0, 5');
-
-        return $req;
+        $req = $db->query('SELECT id, title, content, creation_date 
+        FROM posts 
+        WHERE published = 1 
+        ORDER BY id 
+        LIMIT 0, 5');
+        $datas = $req->fetchAll();
+        $req->closeCursor();
+        return $datas;
     }
 
     public function getPost($postId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content,creation_date FROM posts WHERE id = :post_id');
+        $req = $db->prepare('SELECT id, title, content,creation_date 
+        FROM posts WHERE id = :post_id');
         $req->execute(array('post_id' => $postId));
         $post = $req->fetch();
-
+        $req->closeCursor();
         return $post;
     }
 
@@ -28,21 +34,23 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO posts(title, content, creation_date, published) VALUES (:title, :content, NOW(), published = 1)');
-        $newPost = $req->execute(array('title' => $title, 'content' => $content));
-
+        $newPost = $req->execute(['title' => $title, 'content' => $content]);
+        $req->closeCursor();
         return $newPost;
     }
 
     public function modifyPost($title, $content, $idPost)
     {
         $db = $this->dbConnect();
-        $updatedPost = $db->prepare('UPDATE posts SET title=:modifiedTitle, content= :modifiedContent WHERE id=:idPost');
-        $modifiedPost = $updatedPost->execute(array(
-            'modifiedTitle' => $title,
-            'modifiedContent' => $content,
-            'idPost' => $idPost
-        ));
-
+        $updatedPost = $db->prepare('UPDATE posts SET title=:modifiedTitle, content= :modifiedContent, creation_date = NOW(), published=1 WHERE id=:idPost');
+        $modifiedPost = $updatedPost->execute(
+            [
+                'modifiedTitle' => $title,
+                'modifiedContent' => $content,
+                'idPost' => $idPost
+            ]
+        );
+        $updatedPost->closeCursor();
         return $modifiedPost;
     }
 
@@ -50,7 +58,8 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO posts(title, content, creation_date, published) VALUES (:title, :content, NOW(), :published)');
-        $savePost = $req->execute(array('title' => $title, 'content' => $content, 'published' => 0));
+        $savePost = $req->execute(['title' => $title, 'content' => $content, 'published' => 0]);
+        $req->closeCursor();
         return $savePost;
     }
 
@@ -58,16 +67,17 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, title, content,creation_date FROM posts WHERE published = 0');
-        $savedPost = $req->fetch();
-
-        return $savedPost;
+        $savedPosts = $req->fetchAll();
+        $req->closeCursor();
+        return $savedPosts;
     }
 
     public function deletePost($idPost)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM posts WHERE id= :idPost');
-        $deletePost = $req->execute(array('idPost' => $idPost));
+        $deletePost = $req->execute(['idPost' => $idPost]);
+        $req->closeCursor();
         return $deletePost;
     }
 }

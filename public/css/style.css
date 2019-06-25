@@ -1,5 +1,8 @@
+/* font-family */
+
+
 body {
-    background-image: url("../images/photoAlaska.jpg");
+    background-image: url("../images/photoAlaska2.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -148,3 +151,4 @@ form {
 .tox {
     margin-bottom: 30px;
 }
+

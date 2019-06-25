@@ -29,7 +29,7 @@ class ConnexionController
             $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
             echo $this->twig->render("homeAdmin.twig", [
                 'nbCommentFlagged' => $nbCommentFlagged,
-                'data'=> $chapWIP
+                'datas' => $chapWIP
             ]);
         } else {
             echo $this->twig->render("connexionInterface.twig");

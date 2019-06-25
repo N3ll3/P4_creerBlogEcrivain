@@ -24,11 +24,9 @@ class ListPostsController
     {
         $postManager = new PostManager();
         $posts = $postManager->getPosts();
-        $datas = $posts->fetchAll();
-
         echo  $this->twig->render("listPostView.twig", [
-            'datas' => $datas,
+            'datas' => $posts,
         ]);
-        $posts->closeCursor();
+        
     }
 }
