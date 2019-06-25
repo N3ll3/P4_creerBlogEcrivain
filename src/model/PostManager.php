@@ -9,7 +9,7 @@ class PostManager extends Manager
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, creation_date FROM posts ORDER BY id LIMIT 0, 5');
+        $req = $db->query('SELECT id, title, content, creation_date FROM posts WHERE published = 1 ORDER BY creation_date LIMIT 0, 5');
 
         return $req;
     }
@@ -27,7 +27,7 @@ class PostManager extends Manager
     public function insertPost($title, $content)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())');
+        $req = $db->prepare('INSERT INTO posts(title, content, creation_date, published) VALUES (:title, :content, NOW(), published = 1)');
         $newPost = $req->execute(array('title' => $title, 'content' => $content));
 
         return $newPost;
@@ -36,7 +36,7 @@ class PostManager extends Manager
     public function modifyPost($title, $content, $idPost)
     {
         $db = $this->dbConnect();
-        $updatedPost = $db->prepare('UPDATE posts SET title=:modifiedTitle, content= :modifiedContent ,creation_date = NOW() WHERE id=:idPost');
+        $updatedPost = $db->prepare('UPDATE posts SET title=:modifiedTitle, content= :modifiedContent WHERE id=:idPost');
         $modifiedPost = $updatedPost->execute(array(
             'modifiedTitle' => $title,
             'modifiedContent' => $content,
@@ -44,5 +44,22 @@ class PostManager extends Manager
         ));
 
         return $modifiedPost;
+    }
+
+    public function savePost($title, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO posts(title, content, creation_date, published) VALUES (:title, :content, NOW(), :published)');
+        $savePost = $req->execute(array('title' => $title, 'content' => $content, 'published' => 0));
+        return $savePost;
+    }
+
+    public function getChapWIP()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, title, content,creation_date FROM posts WHERE published = 0');
+        $savedPost = $req->fetch();
+
+        return $savedPost;
     }
 }

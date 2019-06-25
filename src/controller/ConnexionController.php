@@ -3,6 +3,7 @@ namespace Controller;
 
 use Model\AdminManager;
 use Model\CommentManager;
+use Model\PostManager;
 
 class ConnexionController
 {
@@ -22,10 +23,13 @@ class ConnexionController
     public function connexion()
     {
         if (isset($_SESSION['isAuth'])) {
-            $commentManager = new CommentManager;
+            $commentManager = new CommentManager();
+            $postManager = new PostManager();
+            $chapWIP = $postManager->getChapWIP();
             $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
-            echo $this->twig->render("homeAdmin.twig",[
-                'nbCommentFlagged'=>$nbCommentFlagged
+            echo $this->twig->render("homeAdmin.twig", [
+                'nbCommentFlagged' => $nbCommentFlagged,
+                'data'=> $chapWIP
             ]);
         } else {
             echo $this->twig->render("connexionInterface.twig");

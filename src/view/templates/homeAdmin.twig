@@ -15,29 +15,54 @@
 
 {% endblock %}
 
+{% block post %}
+    {% if data %}
 
+        <h3>
+            Chapitre en cours de Rédaction
+        </h3>
+        <article class="post container">
+
+            <h3 class="postTitle">
+                {{data.title | raw }}
+            </h3>
+
+            <div class="content">
+                {{data.content | raw }}
+            </div>
+            <a href="index.php?action=modifyPostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
+
+        </article>
+    {% else %}
+        <h3>
+            Vous n'avez aucun chapitre en cours de rédaction
+        </h3>
+    {% endif %}
+{% endblock %}
 {% block admin %}
-    <div class="row">
-        <div class="accesAdmin col-md-4 justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="accesAdmin col-sm-6 justify-content-center">
 
-            <a href="index.php?action=writePostAcces">
-                Ecrire un article</a>
-        </div>
+                <a href="index.php?action=writePostAcces">
+                    Ecrire un article</a>
+            </div>
 
-        <div class="accesAdmin offset-md-2 col-md-4 justify-content-center">
+            <div class="accesAdmin col-sm-6 justify-content-center">
 
-            <a href="index.php?action=moderateComment">
-                Modérer commentaires
-            </a>
-            {% if nbCommentFlagged %}
-                <p>
-                    Vous avez
-                    {{nbCommentFlagged}}
-                    commentaire(s) à modérer</p>
-            {% else %}
-                <p>
-                    Vous n'avez aucun commentaire à modérer</p>
-            {% endif %}
+                <a href="index.php?action=moderateComment">
+                    Modérer commentaires
+                </a>
+                {% if nbCommentFlagged %}
+                    <p>
+                        Vous avez
+                        {{nbCommentFlagged}}
+                        commentaire(s) à modérer</p>
+                {% else %}
+                    <p>
+                        Vous n'avez aucun commentaire à modérer</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

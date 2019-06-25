@@ -38,25 +38,26 @@
             <section class="intro"> {% block sectionIntro %}{% endblock %}
                 </section>
 
-                <section class="main">
-                    <div class="posts"> {% block post %}{% endblock %}
-                        </div>
-                        <div class="formComment"> {% block form %}{% endblock %}
-                            </div>
+                <section
+                    class="main container">
+                   
+                    {% block post %}{% endblock %}
+                    
+                    {% block form %}{% endblock %}
+                   
+                    {% block comment %}{% endblock %}
+                   
+                </section>
 
+                <section class="admin"> {% block admin %}{% endblock %}
+                    </section>
 
-                            <div id="comments"> {% block comment %}{% endblock %}
-                                </div>
-                            </section>
-                            <div class="admin"> {% block admin %}{% endblock %}
-                                </div>
+    
 
-                                {% block pagination %}{% endblock %}
+                    <footer>
+                        Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
 
-                                <footer>
-                                    Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
+                    {% block script %}{% endblock %}
 
-                                {% block script %}{% endblock %}
-
-                            </body>
-                        </html>
+                </body>
+            </html>

@@ -7,7 +7,7 @@ use Model\PostManager;
 class WritePostController
 {
 
-    public function writePost($title, $content)
+    public function publishPost($title, $content)
     {
         if (!empty($_POST['title']) and !empty($_POST['content'])) {
             $postManager = new PostManager();
@@ -35,6 +35,21 @@ class WritePostController
                 throw new \Exception('Impossible de modifier l\'article');
             } else {
                 header('Location:index.php?action=listPosts');
+            }
+        } else {
+            throw new \Exception('Tous les champs ne sont pas remplis !');
+        }
+    }
+
+    public function savePost($title, $content)
+    {
+        if (!empty($_POST['title']) and !empty($_POST['content'])) {
+            $postManager = new PostManager();
+            $savedPost = $postManager->savePost($title, $content);
+            if ($savedPost == false) {
+                throw new \Exception('Impossible de sauvegarder le chapitre');
+            } else {
+                header('Location:index.php?action=connexion');
             }
         } else {
             throw new \Exception('Tous les champs ne sont pas remplis !');

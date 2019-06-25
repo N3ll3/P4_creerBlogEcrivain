@@ -2,65 +2,68 @@
 
 {% block script %}
 
-<script src="public/js/rememberMe.js"></script>
+    <script src="public/js/rememberMe.js"></script>
 
 {% endblock %}
 
 {% block nav %}
-<div class="navbar-header">
-    <p class="navbar-brand">
-        Blog de Jean Forteroche, acteur et écrivain
-    </p>
+    <div class="navbar-header">
+        <p class="navbar-brand">
+            Blog de Jean Forteroche, acteur et écrivain
+        </p>
 
-</div>
-<ul class="nav navbar-nav">
-    <li>
-        <a href="index.php">Retour à la liste des chapitres</a>
-    </li>
-</ul>
+    </div>
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="index.php">Retour à la liste des chapitres</a>
+        </li>
+    </ul>
 
 {% endblock %}
 
 {% block sectionIntro %}
-<h1>
-    Connectez-vous pour accéder à votre espace administration</h1>
-<p> Entrer vos identifiants et mot de passe </p>
+    <h1>
+        Connectez-vous pour accéder à votre espace administration</h1>
+    <p>
+        Entrer vos identifiants et mot de passe
+    </p>
 {% endblock %}
 
 
 {% block admin %}
 
-<br>
-<br>
-<form action="index.php?action=signIn" id="connexionForm" method="POST">
-
-    <label for="username">
-        Entrer votre identifiant :
-    </label>
-    <input id="username" name="username" required="required" type="text">
-
     <br>
     <br>
+    <form action="index.php?action=signIn" id="connexionForm" method="POST">
 
-    <label for="psw">
-        Entrer votre mot de passe :
-    </label>
-    <input id="psw" name="psw" required="required" type="password">
+        <label for="username">
+            Entrer votre identifiant :
+        </label>
+        <input id="username" name="username" required="required" type="text">
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <label for="rememberMe">
-        Se souvenir de moi
-    </label>
-    <input id="rememberMe" name='rememberMe' type="checkbox">
+        <label for="psw">
+            Entrer votre mot de passe :
+        </label>
+        <input id="psw" name="psw" required="required" type="password">
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <input id="validate" type="submit" value="Valider">
+        <label for="rememberMe">
+            Se souvenir de moi
+        </label>
+        <input id="rememberMe" name='rememberMe' type="checkbox">
 
-</form>
+        <br>
+        <br>
+
+        <input class="btn btn-secondary" id="validate" type="submit" value="Valider">
+
+
+    </form>
 
 
 {% endblock %}

@@ -39,10 +39,6 @@ body {
     font-size: 0.8em;
 }
 
-.formComment {
-    margin-bottom: 20px;
-}
-
 .postTitle {
     border: solid;
     background-color: #497699;
@@ -76,13 +72,15 @@ body {
 }
 
 .accesAdmin {
-
     background-color: #C2CBD0;
     color: #272F28;
     border: solid 1px#3A82C6;
     border-radius: 1.5em;
+    height: 70px;
 
 }
+
+
 
 .accesAdmin a {
     text-decoration: none;
@@ -123,7 +121,6 @@ form {
 .modifChap {
     line-height: 10px;
 }
-
 
 .content {
     width: 100%;

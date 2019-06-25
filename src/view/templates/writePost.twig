@@ -1,29 +1,44 @@
 {% extends 'homeLayout.twig' %}
 {% block title %}{% endblock %}
 
-{% block header %}
-    {% block nav %}
 
-        {{include("navbar.html.twig") }}
+{% block nav %}
 
-    {% endblock %}
-    <h1>
-        Ecrire un nouveau chapitre
-    </h1>
+{{include("navbar.html.twig") }}
+
+{% endblock %}
+
+
+{% block sectionIntro %}
+<h1>
+    Ecrire un nouveau chapitre
+</h1>
+
 
 {% endblock %}
 
 {% block post %}
 
 
-    <form action='index.php?action=writePost' method="post">
-        <h2>
-            Titre de votre chapitre
-        </h2>
-        <textarea name="title"></textarea>
-        <h2>
-            Contenu de votre chapitre
-        </h2>
-        <textarea id="content" name="content"></textarea>
-        <input type="submit"></body>
+<form id="writePost" method="post">
+    <h2>
+        Titre de votre chapitre
+    </h2>
+    <textarea name="title"></textarea>
+    <h2>
+        Contenu de votre chapitre
+    </h2>
+    <textarea id="content" name="content"></textarea>
+
+    <input id="published" type="submit" value="Publier" formaction="index.php?action=publishPost"></input>
+
+    <input id="draft" type="submit" value="Conserver comme brouillon" formaction="index.php?action=savePost"></input>
+
+    {# <input id="delete" type="submit" value="Supprimer" formaction="index.php?action=deletePost"></input> #}
+
+</form>
 {% endblock %}
+
+
+
+{# {% block script %}<script src="public/js/savePost.js"></script>{% endblock %} #}
