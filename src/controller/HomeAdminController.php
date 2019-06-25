@@ -21,25 +21,18 @@ class HomeAdminController
     public function accesWritePost()
     {
         if (isset($_SESSION['isAuth'])) {
-
-            echo $this->twig->render("writePost.twig");
+            if (isset($_GET['idPost'])) {
+                $idPost = $_GET['idPost'];
+                $postManager = new PostManager();
+                $postSelected = $postManager->getPost($idPost);
+                echo $this->twig->render("writePost.twig", ['post' => $postSelected]);
+            } else {
+                echo $this->twig->render("writePost.twig");
+            }
         } else {
             echo $this->twig->render("connexionInterface.twig");
         }
     }
-
-    public function accesModifyPost()
-    {
-        if (isset($_SESSION['isAuth'])) {
-            $idPost = $_GET['idPost'];
-            $postManager = new PostManager();
-            $postSelected = $postManager->getPost($idPost);
-            echo $this->twig->render("modifyPost.twig", ['post' => $postSelected]);
-        } else {
-            echo $this->twig->render("connexionInterface.twig");
-        }
-    }
-
 
     public function accesModerateComment()
     {

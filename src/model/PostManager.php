@@ -9,7 +9,7 @@ class PostManager extends Manager
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, creation_date FROM posts WHERE published = 1 ORDER BY creation_date LIMIT 0, 5');
+        $req = $db->query('SELECT id, title, content, creation_date FROM posts WHERE published = 1 ORDER BY id LIMIT 0, 5');
 
         return $req;
     }
@@ -61,5 +61,13 @@ class PostManager extends Manager
         $savedPost = $req->fetch();
 
         return $savedPost;
+    }
+
+    public function deletePost($idPost)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM posts WHERE id= :idPost');
+        $deletePost = $req->execute(array('idPost' => $idPost));
+        return $deletePost;
     }
 }

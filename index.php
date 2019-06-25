@@ -59,9 +59,6 @@ try {
             case 'logout':
                 $homeAdminController->logout();
                 break;
-            case 'modifyPostAcces':
-                $homeAdminController->accesModifyPost();
-                break;
 
                 // Page Write Post
             case 'publishPost':
@@ -74,6 +71,10 @@ try {
 
             case 'savePost':
                 $writePostController->savePost($_POST['title'], $_POST['content']);
+                break;
+
+            case 'deletePost':
+                $writePostController->deletePost($_GET['idPost']);
                 break;
 
 

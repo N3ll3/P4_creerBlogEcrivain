@@ -11,7 +11,7 @@
 
 {% block sectionIntro %}
 <h1>
-    Ecrire un nouveau chapitre
+    Ecrire votre chapitre
 </h1>
 
 
@@ -19,7 +19,7 @@
 
 {% block post %}
 
-
+{% if post is null %}
 <form id="writePost" method="post">
     <h2>
         Titre de votre chapitre
@@ -29,16 +29,31 @@
         Contenu de votre chapitre
     </h2>
     <textarea id="content" name="content"></textarea>
-
     <input id="published" type="submit" value="Publier" formaction="index.php?action=publishPost"></input>
-
     <input id="draft" type="submit" value="Conserver comme brouillon" formaction="index.php?action=savePost"></input>
 
-    {# <input id="delete" type="submit" value="Supprimer" formaction="index.php?action=deletePost"></input> #}
+    {% else %}
+    <form id="writePost" method="post">
+        <h2>
+            Titre de votre chapitre
+        </h2>
+        <textarea name="title">
+            {{post.title}}</textarea>
+        <h2>
+            Contenu de votre chapitre
+        </h2>
+        <textarea id="content" name="content">{{post.content}}</textarea>
+        <input id="published" type="submit" value="Publier"
+            formaction="index.php?action=modifyPost&amp;idPost={{post.id}}"></input>
+        <input id="draft" type="submit" value="Conserver comme brouillon"
+            formaction="index.php?action=savePost"></input>
+        <input id="delete" type="submit" value="Supprimer"
+            formaction="index.php?action=deletePost&amp;idPost={{post.id}}"></input>
+        {% endif %}
+    </form>
 
-</form>
-{% endblock %}
+    {% endblock %}
 
 
 
-{# {% block script %}<script src="public/js/savePost.js"></script>{% endblock %} #}
+    {# {% block script %}<script src="public/js/savePost.js"></script>{% endblock %} #}
