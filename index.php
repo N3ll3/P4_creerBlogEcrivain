@@ -22,9 +22,7 @@ $moderateCommentController = new ModerateCommentController();
 
 try {
     if (isset($_GET['action'])) {
-
         switch ($_GET['action']) {
-
                 // Public
 
                 // Page Listing Posts
@@ -61,18 +59,24 @@ try {
             case 'logout':
                 $homeAdminController->logout();
                 break;
-            case 'modifyPostAcces':
-                $homeAdminController->accesModifyPost();
-                break;
 
                 // Page Write Post
-            case 'writePost':
-                $writePostController->writePost($_POST['title'], $_POST['content']);
+            case 'publishPost':
+                $writePostController->publishPost($_POST['title'], $_POST['content']);
                 break;
 
             case 'modifyPost':
                 $writePostController->modifyPost($_POST['title'], $_POST['content'], $_GET['idPost']);
                 break;
+
+            case 'savePost':
+                $writePostController->savePost($_POST['title'], $_POST['content']);
+                break;
+
+            case 'deletePost':
+                $writePostController->deletePost($_GET['idPost']);
+                break;
+
 
                 // Page Moderate comment
             case 'moderateComment':

@@ -7,7 +7,7 @@ use Model\PostManager;
 class WritePostController
 {
 
-    public function writePost($title, $content)
+    public function publishPost($title, $content)
     {
         if (!empty($_POST['title']) and !empty($_POST['content'])) {
             $postManager = new PostManager();
@@ -38,6 +38,37 @@ class WritePostController
             }
         } else {
             throw new \Exception('Tous les champs ne sont pas remplis !');
+        }
+    }
+
+    public function savePost($title, $content)
+    {
+        if (!empty($_POST['title']) and !empty($_POST['content'])) {
+            $postManager = new PostManager();
+            $savedPost = $postManager->savePost($title, $content);
+            if ($savedPost == false) {
+                throw new \Exception('Impossible de sauvegarder le chapitre');
+            } else {
+                header('Location:index.php?action=connexion');
+            }
+        } else {
+            throw new \Exception('Tous les champs ne sont pas remplis !');
+        }
+    }
+
+    public function deletePost($idPost)
+    {
+        if (isset($_GET['idPost'])) {
+            $postManager = new PostManager();
+            $deletePost = $postManager->deletePost($idPost);
+
+            if ($deletePost == false) {
+                throw new \Exception('Impossible de supprimer le chapitre');
+            } else {
+                header('Location:index.php?action=connexion');
+            }
+        } else {
+            throw new \Exception('Le chapitre à supprimer n\'est pas indiqué');
         }
     }
 }
