@@ -31,6 +31,7 @@
 {% block sectionIntro %}
 
     <h1>
+
         Billet simple pour l'Alaska</h1>
 
     <p>
@@ -45,14 +46,14 @@
 
 {% for data in datas %}
 
-    <article class="post container">
+    <article class="post container main">
 
         {% if session.isAuth %}
             <a href="index.php?action=writePostAcces&amp;idPost={{data.id }}">
                 Modifier le chapitre
             </a>
         {% endif %}
-        <h3 class="postTitle">
+        <h3 class="postTitle main">
             <a href="index.php?action=onePost&amp;id=  {{data.id }}">{{ data.title | raw}}</a>
 
         </h3>

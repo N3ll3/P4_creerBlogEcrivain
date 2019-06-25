@@ -14,44 +14,19 @@
     <h1>Espace Administrateur</h1>
 
 {% endblock %}
-
-{% block post %}
-    {% if data %}
-
-        <h3>
-            Chapitre en cours de Rédaction
-        </h3>
-        <article class="post container">
-
-            <h3 class="postTitle">
-                {{data.title | raw }}
-            </h3>
-
-            <div class="content">
-                {{data.content | raw }}
-            </div>
-            <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
-
-        </article>
-    {% else %}
-        <h3>
-            Vous n'avez aucun chapitre en cours de rédaction
-        </h3>
-    {% endif %}
-{% endblock %}
 {% block admin %}
     <div class="container">
         <div class="row">
-            <div class="accesAdmin col-sm-6 justify-content-center">
+            <div class="accesAdmin col-xs-5 justify-content-center text-center main">
 
                 <a href="index.php?action=writePostAcces">
-                    Ecrire un article</a>
+                    Ecrire un chapitre</a>
             </div>
 
-            <div class="accesAdmin col-sm-6 justify-content-center">
+            <div class="accesAdmin col-xs-offset-2 col-xs-5 justify-content-center text-center main">
 
                 <a href="index.php?action=moderateComment">
-                    Modérer commentaires
+                    Modérer les commentaires
                 </a>
                 {% if nbCommentFlagged %}
                     <p>
@@ -64,5 +39,30 @@
                 {% endif %}
             </div>
         </div>
+    </div>
+{% endblock %}
+{% block post %}
+    <div class="admin">
+        {% if data %}
+            <h4 class="main text-center">
+                Chapitre en cours de Rédaction
+            </h4>
+            <article class="post container main">
+
+                <h3 class="postTitle">
+                    {{data.title | raw }}
+                </h3>
+
+                <div class="content">
+                    {{data.content | raw }}
+                </div>
+                <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
+
+            </article>
+        {% else %}
+            <p class="main text-center">
+                Vous n'avez aucun chapitre en cours de rédaction
+            </p>
+        {% endif %}
     </div>
 {% endblock %}

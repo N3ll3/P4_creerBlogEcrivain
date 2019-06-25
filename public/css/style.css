@@ -5,6 +5,15 @@ body {
     background-size: cover;
 }
 
+.main {
+    color: #272F28;
+    background-color: #C2CBD0;
+    border: solid 1px#3A82C6;
+    border-radius: 0.3em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .intro {
     text-align: center;
     width: 50%;
@@ -12,18 +21,11 @@ body {
     margin-right: auto;
     margin-bottom: 15px;
     padding: 15px;
-    color: #272F28;
-    background-color: #C2CBD0;
     padding-bottom: 10px;
-    border-radius: 0.3em;
 }
 
 .comment {
-    border: solid 1px#3A82C6;
-    border-radius: 0.3em;
     padding: 5px;
-    background-color: #C2CBD0;
-    color: #272F28;
     margin-top: 10px;
 }
 
@@ -40,67 +42,67 @@ body {
 }
 
 .postTitle {
-    border: solid;
-    background-color: #497699;
     font-size: 1.5em;
     font-weight: 300;
     margin-bottom: 0px;
-    color: white;
     text-align: center;
     padding: 1%;
-    border-radius: 0.2em;
+
 }
 
 .postTitle a,
 .postTitle a:visited,
 .postTitle a:active,
 .postTitle a:hover {
-    color: white;
     text-decoration: none;
 }
 
 .date {
     text-align: center;
+    padding: 0.5em;
 }
 
 .post {
-    border: solid 1px#3A82C6;
-    border-radius: 0.3em;
     padding: 2%;
-    background-color: #C2CBD0;
-    color: #272F28;
 }
+
+.admin {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 
 .accesAdmin {
-    background-color: #C2CBD0;
-    color: #272F28;
-    border: solid 1px#3A82C6;
-    border-radius: 1.5em;
-    height: 70px;
-
+    height: 80px;
+    padding-top: 1em;
 }
 
-
-
-.accesAdmin a {
+.main a,
+.main a:visited,
+.main a:hover {
     text-decoration: none;
+    font-size: 1.5em;
 }
+
 
 h2 {
-    border: solid 1px#3A82C6;
     padding: 2%;
-    background-color: #C2CBD0;
-    color: #272F28;
     text-align: center;
     width: 50%;
+    margin: auto;
+}
+
+h4 {
+    width: 80%;
     margin: auto;
 }
 
 form {
     width: 50%;
     margin: auto;
-    color: #272F28;
-    background-color: #C2CBD0;
     padding: 2%;
     text-align: center;
 }
@@ -128,8 +130,21 @@ form {
     text-overflow: ellipsis;
     overflow: hidden;
     background: linear-gradient(transparent 300px, #272F28);
+    margin-bottom: 20px;
 }
 
 .toBeContinued {
     margin: 10px;
+}
+
+#writePost {
+    width: 80%;
+}
+
+#titleForm {
+    width: 80%;
+}
+
+.tox {
+    margin-bottom: 30px;
 }

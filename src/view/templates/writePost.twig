@@ -4,56 +4,46 @@
 
 {% block nav %}
 
-{{include("navbar.html.twig") }}
+    {{include("navbar.html.twig") }}
 
 {% endblock %}
 
 
 {% block sectionIntro %}
-<h1>
-    Ecrire votre chapitre
-</h1>
+    <h1>
+        Ecrire votre chapitre
+    </h1>
 
 
 {% endblock %}
 
-{% block post %}
+{% block admin %}
 
-{% if post is null %}
-<form id="writePost" method="post">
-    <h2>
-        Titre de votre chapitre
-    </h2>
-    <textarea name="title"></textarea>
-    <h2>
-        Contenu de votre chapitre
-    </h2>
-    <textarea id="content" name="content"></textarea>
-    <input id="published" type="submit" value="Publier" formaction="index.php?action=publishPost"></input>
-    <input id="draft" type="submit" value="Conserver comme brouillon" formaction="index.php?action=savePost"></input>
+    {% if post is null %}
+        <form id="writePost" method="post">
+            <h2 class="main">
+                Titre de votre chapitre
+            </h2>
+            <textarea id="titleForm" name="title"></textarea>
+            <h2 class="main">
+                Contenu de votre chapitre
+            </h2>
+            <textarea id="content" name="content"></textarea>
 
-    {% else %}
-    <form id="writePost" method="post">
-        <h2>
-            Titre de votre chapitre
-        </h2>
-        <textarea name="title">
-            {{post.title}}</textarea>
-        <h2>
-            Contenu de votre chapitre
-        </h2>
-        <textarea id="content" name="content">{{post.content}}</textarea>
-        <input id="published" type="submit" value="Publier"
-            formaction="index.php?action=modifyPost&amp;idPost={{post.id}}"></input>
-        <input id="draft" type="submit" value="Conserver comme brouillon"
-            formaction="index.php?action=savePost"></input>
-        <input id="delete" type="submit" value="Supprimer"
-            formaction="index.php?action=deletePost&amp;idPost={{post.id}}"></input>
-        {% endif %}
-    </form>
+        {% else %}
+            <form id="writePost" method="post">
+                <h2 class="main">
+                    Titre de votre chapitre
+                </h2>
+                <textarea id="titleForm" name="title">
+                    {{post.title}}</textarea>
+                <h2 class="main">
+                    Contenu de votre chapitre
+                </h2>
+                <textarea id="content" name="content">{{post.content}}</textarea>
 
-    {% endblock %}
+            {% endif %}
 
-
-
-    {# {% block script %}<script src="public/js/savePost.js"></script>{% endblock %} #}
+            <input class="btn btn-secondary" formaction="index.php?action=publishPost" id="published" type="submit" value="Publier"></input>
+        <input class="btn btn-secondary" formaction="index.php?action=savePost" id="draft" type="submit" value="Conserver comme brouillon"></input>
+    <input class="btn btn-secondary" formaction="index.php?action=deletePost&amp;idPost={{post.id}}" id="delete" type="submit" value="Supprimer"></input></form>{% endblock %}
