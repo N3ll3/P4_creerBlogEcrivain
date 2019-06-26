@@ -26,6 +26,7 @@ class AdminController
             $postManager = new PostManager();
             $chapWIP = $postManager->getChapWIP();
             $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
+
             echo $this->twig->render("homeAdmin.twig", [
                 'nbCommentFlagged' => $nbCommentFlagged,
                 'datas' => $chapWIP

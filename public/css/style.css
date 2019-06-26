@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Mali', cursive;
 }
 
 .main {
@@ -13,6 +14,7 @@ body {
     background-color: #C2CBD0;
     border: solid 1px#3A82C6;
     border-radius: 0.3em;
+    font-family: 'Mali', cursive;
     /* padding-top: 10px; */
     /* padding-bottom: 10px; */
 }
