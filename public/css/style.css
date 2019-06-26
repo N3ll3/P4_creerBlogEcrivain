@@ -15,8 +15,7 @@ body {
     border: solid 1px#3A82C6;
     border-radius: 0.3em;
     font-family: 'Mali', cursive;
-    /* padding-top: 10px; */
-    /* padding-bottom: 10px; */
+
 }
 
 .intro {
@@ -27,6 +26,7 @@ body {
     margin-bottom: 15px;
     padding: 15px;
     padding-bottom: 10px;
+    box-shadow: 5px 2px 2px #3A82C6;
 }
 
 .pagination {
@@ -60,6 +60,7 @@ body {
     margin-bottom: 0px;
     text-align: center;
     padding: 1%;
+    color: #3A82C6;
 
 }
 

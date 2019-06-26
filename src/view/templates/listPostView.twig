@@ -42,7 +42,7 @@
 
 {% endblock %}
 
-{% block pagination %}
+{% block paginationTop %}
 <p class="pagination">
 
 {% for i in 1..nbPage %}
@@ -85,3 +85,12 @@
        
     </article>
 </p>{% endfor %}{% endblock %}
+{% block paginationBottom %}
+<p class="pagination">
+
+{% for i in 1..nbPage %}
+<a class="main page" href="index.php?action=listPosts&amp;page={{i}}"> Page {{i}} </a>
+{% endfor %}
+
+</p>
+{% endblock %}
