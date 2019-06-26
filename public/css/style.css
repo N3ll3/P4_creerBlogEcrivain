@@ -13,8 +13,8 @@ body {
     background-color: #C2CBD0;
     border: solid 1px#3A82C6;
     border-radius: 0.3em;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
 }
 
 .intro {
@@ -27,16 +27,24 @@ body {
     padding-bottom: 10px;
 }
 
+.pagination {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.page {
+    padding: 0.5em;
+    font-size: 1em;
+}
+
 .comment {
     padding: 5px;
     margin-top: 10px;
 }
 
-.flag {
-    border: solid, red;
-    box-shadow: 1px;
-    display: block;
-}
 
 .flagged {
     color: red;
@@ -129,15 +137,10 @@ form {
 
 .content {
     width: 100%;
-    max-height: 350px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    background: linear-gradient(transparent 300px, #272F28);
-    margin-bottom: 20px;
 }
 
 .toBeContinued {
-    margin: 10px;
+    font-size: 0.8em;
 }
 
 #writePost {
@@ -151,4 +154,3 @@ form {
 .tox {
     margin-bottom: 30px;
 }
-

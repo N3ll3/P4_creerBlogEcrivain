@@ -23,10 +23,23 @@ class PostsController
 
     public function listPosts()
     {
+        $postPerPage = 5;
         $postManager = new PostManager();
-        $posts = $postManager->getAllPosts();
+        $nbPosts = $postManager->getNbOfAllPosts();
+        $nbOfPage = ceil(intval($nbPosts) / $postPerPage);
+        $page = 1;
+        if (isset($_GET['page']) and $_GET['page'] <= $nbOfPage) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+        $firstPost = ($page - 1) * $postPerPage;
+
+        $posts = $postManager->getFivePosts($firstPost, $postPerPage);
+
         echo  $this->twig->render("listPostView.twig", [
             'datas' => $posts,
+            'nbPage' => $nbOfPage
         ]);
     }
 
@@ -49,9 +62,12 @@ class PostsController
 
     public function publishPost($title, $content)
     {
+
         if (!empty($_POST['title']) and !empty($_POST['content'])) {
+
             $postManager = new PostManager();
-            $newPost = $postManager->insertPost($title, $content);
+            $newPost = $postManager->publishPost($title, $content);
+
             if (
                 $newPost === false
             ) {
