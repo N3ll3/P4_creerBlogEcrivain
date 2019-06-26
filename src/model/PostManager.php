@@ -6,25 +6,39 @@ use Model\Manager;
 
 class PostManager extends Manager
 {
-    public function getPosts()
+    public function getAllPosts()
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, title, content, creation_date 
         FROM posts 
         WHERE published = 1 
-        ORDER BY id 
-        LIMIT 0, 5');
+        ORDER BY id');
         $datas = $req->fetchAll();
         $req->closeCursor();
         return $datas;
     }
+
+    public function getFivePosts($begin)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, content, creation_date 
+        FROM posts 
+        WHERE published = 1 
+        ORDER BY id
+        LIMIT :begining, 5');
+        $req->execute(['beginnig' => $begin]);
+        $datas = $req->fetchAll();
+        $req->closeCursor();
+        return $datas;
+    }
+
 
     public function getPost($postId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, content,creation_date 
         FROM posts WHERE id = :post_id');
-        $req->execute(array('post_id' => $postId));
+        $req->execute(['post_id' => $postId]);
         $post = $req->fetch();
         $req->closeCursor();
         return $post;

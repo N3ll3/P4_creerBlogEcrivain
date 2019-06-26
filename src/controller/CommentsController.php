@@ -1,15 +1,11 @@
 <?php
 namespace Controller;
 
-use Model\PostManager;
 use Model\CommentManager;
-
-require_once('vendor/autoload.php');
 
 class CommentsController
 
 {
-
     public $twig;
 
     public function __construct()
@@ -23,26 +19,6 @@ class CommentsController
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
-    public function onePost()
-    {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $postManager = new PostManager();
-            $commentManager = new CommentManager();
-            $post = $postManager->getPost($_GET['id']);
-            $commentsData = $commentManager->getComments($_GET['id']);
-
-            $comments = $commentsData->fetchAll();
-
-            echo  $this->twig->render("OnePostView.twig", [
-                'post' => $post,
-                'comments' => $comments,
-
-            ]);
-            $commentsData->closeCursor();
-        } else {
-            throw new \Exception('Aucun identifiant de billet envoyé');
-        }
-    }
 
     public function addComment($postId, $author, $content)
     {
@@ -70,6 +46,41 @@ class CommentsController
             $commentManager->isFlagged($idComment);
         } else {
             throw new \Exception('Aucun identifiant de billet envoyé');
+        }
+    }
+
+    public function listFlaggedComments()
+    {
+        $commentManager = new CommentManager();
+        $flaggedComments = $commentManager->getCommentsFlagged();
+        if (isset($flaggedComments)) {
+            echo  $this->twig->render("moderateComment.twig", [
+                'comments' => $flaggedComments,
+            ]);
+        } else {
+            throw new \Exception('Il n\'y a aucun commentaire à modérer');
+        }
+    }
+
+    public function deleteComment($idComment)
+    {
+        if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
+            $commentManager = new CommentManager();
+            $commentManager->deleteComment($idComment);
+            \header('Location:index.php?action=moderateComment');
+        } else {
+            throw new \Exception('Aucun commentaire à supprimer');
+        }
+    }
+
+    public function approveComment($idComment)
+    {
+        if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
+            $commentManager = new CommentManager();
+            $commentManager->unflagComment($idComment);
+            \header('Location:index.php?action=moderateComment');
+        } else {
+            throw new \Exception('Aucun commentaire à conserver');
         }
     }
 }

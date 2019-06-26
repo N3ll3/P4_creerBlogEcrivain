@@ -1,23 +1,17 @@
 <?php
 
-use Controller\ListPostsController;
+use Controller\PostsController;
 use Controller\CommentsController;
-use Controller\ConnexionController;
-use Controller\RegisterController;
-use Controller\HomeAdminController;
-use Controller\WritePostController;
-use Controller\ModerateCommentController;
+use Controller\AdminController;
+
 
 require('vendor/autoload.php');
 \session_start();
 
 // Init controllers
-$listPostsController = new ListPostsController();
+$postsController = new PostsController();
 $commentsController = new CommentsController();
-$connexionController = new ConnexionController();
-$homeAdminController = new HomeAdminController();
-$writePostController = new WritePostController();
-$moderateCommentController = new ModerateCommentController();
+$adminController = new AdminController();
 
 try {
     if (isset($_GET['action'])) {
@@ -26,12 +20,12 @@ try {
 
                 // Page Listing Posts
             case 'listPosts':
-                $listPostsController->listPosts();
+                $postsController->listPosts();
                 break;
 
                 // Page One POst and Comments
             case 'onePost':
-                $commentsController->onePost();
+                $postsController->onePost();
                 break;
             case 'addComment':
                 $commentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
@@ -44,59 +38,59 @@ try {
 
                 // Page Connexion
             case 'connexion':
-                $connexionController->connexion();
+                $adminController->connexion();
                 break;
 
             case 'signIn':
-                $connexionController->signIn();
+                $adminController->signIn();
                 break;
 
                 // Page Home Admin
             case 'writePostAcces':
-                $homeAdminController->accesWritePost();
+                $adminController->accesWritePost();
                 break;
             case 'logout':
-                $homeAdminController->logout();
+                $adminController->logout();
                 break;
 
                 // Page Write Post
             case 'publishPost':
-                $writePostController->publishPost($_POST['title'], $_POST['content']);
+                $postsController->publishPost($_POST['title'], $_POST['content']);
                 break;
 
             case 'modifyPost':
-                $writePostController->modifyPost($_POST['title'], $_POST['content'], $_GET['idPost']);
+                $postsController->modifyPost($_POST['title'], $_POST['content'], $_GET['idPost']);
                 break;
 
             case 'savePost':
-                $writePostController->savePost($_POST['title'], $_POST['content']);
+                $postsController->savePost($_POST['title'], $_POST['content']);
                 break;
 
             case 'deletePost':
-                $writePostController->deletePost($_GET['idPost']);
+                $postsController->deletePost($_GET['idPost']);
                 break;
 
 
                 // Page Moderate comment
             case 'moderateComment':
-                $moderateCommentController->listFlaggedComments();
+                $commentsController->listFlaggedComments();
                 break;
 
             case 'deleteComment':
-                $moderateCommentController->deleteComment($_GET['idComment']);
+                $commentsController->deleteComment($_GET['idComment']);
                 break;
 
             case 'unflagComment':
-                $moderateCommentController->approveComment($_GET['idComment']);
+                $commentsController->approveComment($_GET['idComment']);
                 break;
 
                 //Default
             default;
-                $listPostsController->listPosts();
+                $postsController->listPosts();
                 break;
         }
     } else {
-        $listPostsController->listPosts();
+        $postsController->listPosts();
     }
 } catch (\Exception $e) {
     $errorMessage = $e->getMessage();

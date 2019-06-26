@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8"/>
+<head>
+    <meta charset="utf-8" />
 
-        <link href="public/css/style.css" rel="stylesheet"/>
+    <link href="public/css/style.css" rel="stylesheet" />
 
-        <script src="vendor/tinymce/tinymce/tinymce.js"></script>
+    <script src="vendor/tinymce/tinymce/tinymce.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" rel="stylesheet">
 
-        <script>
-            tinymce.init({
-                selector: 'textarea#content',
-                language: 'fr_FR',
-                menubar: false,
-                height: 500,
-                toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-                entity_encoding: 'raw'
-            });
-        </script>
-        {% block title %}{% endblock %}
+    <script>
+        tinymce.init({
+            selector: 'textarea#content',
+            language: 'fr_FR',
+            menubar: false,
+            height: 500,
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            entity_encoding: 'raw'
+        });
+    </script>
+    {% block title %}{% endblock %}
 
-    </head>
+</head>
 
-    <body>
-        <header>
+<body>
+    <header>
 
-            <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse">
 
-                <div class="container-fluid"> {% block nav %}{% endblock %}
-                    </div>
-                </nav>
+            <div class="container-fluid"> {% block nav %}{% endblock %}
+            </div>
+        </nav>
 
-            </header>
-            <section class="intro main"> {% block sectionIntro %}{% endblock %}
-                </section>
+    </header>
+    <section class="intro main"> {% block sectionIntro %}{% endblock %}
+    </section>
 
-                <section class="admin"> {% block admin %}{% endblock %}
-                    </section>
+    <section class="admin"> {% block admin %}{% endblock %}
+    </section>
 
-                    <section class="container"> {% block comment %}{% block form %}{% block post %}{% endblock %}{% endblock %}{% endblock %}
+    <section class="container">
+        {% block post %}{% endblock %}
+        {% block form %}{% endblock %}
+        {% block comment %}{% endblock %}
 
-                        </section>
+    </section>
 
-                        <footer class="main">
-                            Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
+    <footer class="main">
+        Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom</footer>
 
-                        {% block script %}{% endblock %}
+    {% block script %}{% endblock %}
 
-                    </body>
+</body>
 
-                </html>
+</html>
