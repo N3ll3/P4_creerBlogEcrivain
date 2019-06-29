@@ -32,7 +32,7 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
         ),
         'H' => 
         array (
-            'Helpers\\' => 8,
+            'Helper\\' => 7,
         ),
         'C' => 
         array (
@@ -66,9 +66,9 @@ class ComposerStaticInit3ce6bee1cd8b39446ed790cc9f63a7fa
         array (
             0 => __DIR__ . '/../..' . '/src/model',
         ),
-        'Helpers\\' => 
+        'Helper\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/helpers',
+            0 => __DIR__ . '/../..' . '/src/helper',
         ),
         'Controller\\' => 
         array (

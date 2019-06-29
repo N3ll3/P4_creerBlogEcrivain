@@ -18,7 +18,7 @@
       "Vendor\\": "vendor/",
       "Components\\": "components/",
       "View\\": "src/view/",
-      "Helpers\\": "src/helpers/"
+      "Helper\\": "src/helper/"
     }
   }
 }

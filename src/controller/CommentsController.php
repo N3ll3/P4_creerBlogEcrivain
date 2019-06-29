@@ -1,24 +1,13 @@
 <?php
+
 namespace Controller;
 
 use Model\CommentManager;
+use Helper\TwigLoader;
 
-class CommentsController
+class CommentsController extends TwigLoader
 
 {
-    public $twig;
-
-    public function __construct()
-    {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
-        $this->twig = new \Twig\Environment($loader, [
-            'debug' => true,
-            'cache' => false /*__DIR__.'/view/frontend/tmp'*/
-        ]);
-        $this->twig->addGlobal('session', $_SESSION);
-        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    }
-
 
     public function addComment($postId, $author, $content)
     {
@@ -53,8 +42,9 @@ class CommentsController
     {
         $commentManager = new CommentManager();
         $flaggedComments = $commentManager->getCommentsFlagged();
+        $twig = $this->launchTwig();
         if (isset($flaggedComments)) {
-            echo  $this->twig->render("moderateComment.twig", [
+            echo  $twig->render("moderateComment.twig", [
                 'comments' => $flaggedComments,
             ]);
         } else {

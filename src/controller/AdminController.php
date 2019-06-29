@@ -1,38 +1,29 @@
 <?php
+
 namespace Controller;
 
 use Model\AdminManager;
 use Model\CommentManager;
 use Model\PostManager;
+use Helper\TwigLoader;
 
-class AdminController
+class AdminController extends TwigLoader
 {
-    public $twig;
-
-    public function __construct()
-    {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
-        $this->twig = new \Twig\Environment($loader, [
-            'debug' => true,
-            'cache' => false /*__DIR__.'/view/frontend/tmp'*/
-        ]);
-        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    }
-
     public function connexion()
     {
+        $twig = $this->launchTwig();
         if (isset($_SESSION['isAuth'])) {
             $commentManager = new CommentManager();
             $postManager = new PostManager();
             $chapWIP = $postManager->getChapWIP();
             $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
 
-            echo $this->twig->render("homeAdmin.twig", [
+            echo $twig->render("homeAdmin.twig", [
                 'nbCommentFlagged' => $nbCommentFlagged,
                 'datas' => $chapWIP
             ]);
         } else {
-            echo $this->twig->render("connexionInterface.twig");
+            echo $twig->render("connexionInterface.twig");
         }
     }
 
@@ -60,26 +51,30 @@ class AdminController
 
     public function accesWritePost()
     {
+        $twig = $this->launchTwig();
+
         if (isset($_SESSION['isAuth'])) {
             if (isset($_GET['idPost'])) {
                 $idPost = $_GET['idPost'];
                 $postManager = new PostManager();
                 $postSelected = $postManager->getPost($idPost);
-                echo $this->twig->render("writePost.twig", ['post' => $postSelected]);
+                echo $twig->render("writePost.twig", ['post' => $postSelected]);
             } else {
-                echo $this->twig->render("writePost.twig");
+                echo $twig->render("writePost.twig");
             }
         } else {
-            echo $this->twig->render("connexionInterface.twig");
+            echo $twig->render("connexionInterface.twig");
         }
     }
 
     public function accesModerateComment()
     {
+        $twig = $this->launchTwig();
+
         if (isset($_SESSION['isAuth'])) {
-            echo $this->twig->render("moderateComment.twig");
+            echo $twig->render("moderateComment.twig");
         } else {
-            echo $this->twig->render("connexionInterface.twig");
+            echo $twig->render("connexionInterface.twig");
         }
     }
 

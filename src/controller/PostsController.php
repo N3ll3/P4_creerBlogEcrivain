@@ -1,26 +1,14 @@
 <?php
+
 namespace Controller;
 
 use Model\PostManager;
 use Model\CommentManager;
+use Helper\TwigLoader;
 
 
-class PostsController
+class PostsController extends TwigLoader
 {
-
-    public $twig;
-
-    public function __construct()
-    {
-        $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
-        $this->twig = new \Twig\Environment($loader, [
-            'debug' => true,
-            'cache' => false /*__DIR__.'/view/frontend/tmp'*/
-        ]);
-        $this->twig->addGlobal('session', $_SESSION);
-        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    }
-
     public function listPosts()
     {
         $postPerPage = 5;
@@ -37,7 +25,9 @@ class PostsController
 
         $posts = $postManager->getFivePosts($firstPost, $postPerPage);
 
-        echo  $this->twig->render("listPostView.twig", [
+        $twig = $this->launchTwig();
+
+        echo  $twig->render("listPostView.twig", [
             'datas' => $posts,
             'nbPage' => $nbOfPage
         ]);
@@ -50,8 +40,8 @@ class PostsController
             $commentManager = new CommentManager();
             $post = $postManager->getPost($_GET['id']);
             $commentsData = $commentManager->getComments($_GET['id']);
-
-            echo  $this->twig->render("OnePostView.twig", [
+            $twig = $this->launchTwig();
+            echo  $twig->render("OnePostView.twig", [
                 'post' => $post,
                 'comments' => $commentsData
             ]);
