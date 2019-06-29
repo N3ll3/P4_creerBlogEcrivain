@@ -1,113 +1,123 @@
-{% extends 'homeLayout.twig' %}
-{% block title %}
-    <title>
-        Blog de Jean Forteroche, acteur et écrivain.
-    </title>
-{% endblock %}
+{% extends 'homeLayout.twig' %} {% block title %}
+<title>
+  Blog de Jean Forteroche, acteur et écrivain.
+</title>
+{% endblock %} {% block nav %} {% if session.isAuth is null %}
+<div class="navbar-header">
+  <p class="navbar-brand">
+    Blog de Jean Forteroche, acteur et écrivain
+  </p>
+</div>
+<ul class="nav navbar-nav">
+  <li>
+    <a href="index.php">Retour à la liste des chapitres</a>
+  </li>
+  <li>
+    <a href="#comment"> Voir les commentaires</a>
+  </li>
+</ul>
 
-{% block nav %}
-    {% if session.isAuth is null %}
-        <div class="navbar-header">
-            <p class="navbar-brand">
-                Blog de Jean Forteroche, acteur et écrivain
-            </p>
+<ul class="nav navbar-nav navbar-right">
+  <li>
+    <a href="index.php?action=connexion">Se connecter</a>
+  </li>
+</ul>
 
-        </div>
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="index.php">Retour à la liste des chapitres</a>
-            </li>
-            <li>
-                <a href="#comment">
-                    Voir les commentaires</a>
-            </li>
-        </ul>
+{% else %}
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="index.php?action=connexion">Se connecter</a>
-            </li>
-        </ul>
+{{ include("navbar.html.twig") }}
 
-    {% else %}
+{% endif %} {% endblock %} {% block sectionIntro %}
+<h1>
+  Billet simple pour l'Alaska
+</h1>
 
-        {{include("navbar.html.twig") }}
+{% endblock %} {% block post %}
+<div class="post container main">
+  {% if session.isAuth %}
+  <a
+    class="modifChap"
+    href="index.php?action=writePostAcces&amp;idPost={{ post.id }}"
+  >
+    Modifier le chapitre
+  </a>
+  {% endif %}
 
-    {% endif %}
-{% endblock %}
-{% block sectionIntro %}
-    <h1>
+  <h3 class="postTitle main">
+    {{ post.title | raw }}
+  </h3>
+  <p class="date">
+    Publié le
+    {{post.creation_date_fr |  date("d/m/Y") }}
+  </p>
+  <p class="content">
+    {{ post.content | raw }}
+  </p>
+</div>
 
-        Billet simple pour l'Alaska</h1>
-
-
-{% endblock %}
-{% block post %}
-    <div class="post container main">
-        {% if session.isAuth %}
-            <a class="modifChap" href="index.php?action=writePostAcces&amp;idPost={{post.id }}">
-                Modifier le chapitre
-            </a>
-        {% endif %}
-
-        <h3 class="postTitle main">
-            {{post.title | raw}}</h3>
-        <p class="date">Publié le
-            {{post.creation_date_fr |  date("d/m/Y") }}
-        </p>
-        <p class="content">
-            {{post.content | raw}}
-        </p>
+{% set next = post.id + 1 %}
+<p class="pagination">
+  <a class="main page" href="index.php?action=onePost&amp;id=  {{ next }}">
+    Chapitre suivant</a
+  >
+</p>
+{% endblock %} {% block form %}
+<h2 class="main">Commentaires</h2>
+<div class="container">
+  <form
+    action="index.php?action=addComment&amp;id={{ post.id }}"
+    class="main col-xs-offset-2 col-xs-8"
+    method="post"
+  >
+    <div>
+      <label for="author">Auteur</label>
+      <br />
+      <input class="form-control" id="author" name="author" type="text" />
     </div>
-{% endblock %}
+    <div>
+      <br />
+      <label for="comment">Commentaire</label>
+      <br />
+      <textarea class="form-control" id="comment" name="comment"></textarea>
+    </div>
+    <div>
+      <input
+        class="btn btn-secondary form-control"
+        type="submit"
+        value="Envoyer"
+      />
+    </div>
+  </form>
+</div>
+{% endblock %} {% block comment %} {% for comment in comments %}
+<div class="comment container main">
+  {% if comment.flagged > 0 %}
+  <p class="flagged">
+    Ce commentaire a été signalé
+    <span id="comment{{ comment.id | raw }}">{{ comment.flagged | raw }}</span>
+    fois
+  </p>
+  {% endif %}
+  <p>
+    <strong>{{ comment.author }}</strong>
+    le
+    {{ comment.comment_date_fr }}
+  </p>
 
-{% block form %}
-    <h2 class="main">Commentaires</h2>
+  <p>{{ comment.comment }}</p>
 
+  <form class="flagComment" id="flagComment{{ comment.id | raw }}">
+    <input
+      id="idComment"
+      name="idComment"
+      type="hidden"
+      value="{{ comment.id | raw }}"
+    />
 
-    <form action="index.php?action=addComment&amp;id={{post.id}}" class="main" method="post">
-        <div>
-            <label for="author">Auteur</label>
-            <br/>
-            <input id="author" name="author" type="text"/></div>
-        <div>
-            <br>
-            <label for="comment">Commentaire</label>
-            <br/>
-            <textarea id="comment" name="comment"></textarea>
-        </div>
-        <div>
-            <input class="btn btn-secondary" type="submit" value="Envoyer"/>
-        </div>
-    </form>
-{% endblock %}
-
-
-{% block comment %}
-
-{% for comment in comments %}
-    <div class="comment container main">
-        {% if comment.flagged > 0 %}
-            <p class="flagged">
-                Ce commentaire a été signalé
-                <span id="comment{{comment.id | raw }}">{{comment.flagged| raw }}</span>
-                fois
-            </p>
-        {% endif %}
-        <strong>{{comment.author}}</strong>
-        le
-        {{comment.comment_date_fr}}</p>
-
-    <p>{{comment.comment}}</p>
-
-    <form class="flagComment" id="flagComment{{comment.id | raw }}">
-
-        <input id="idComment" name="idComment" type="hidden" value="{{comment.id | raw }}"/>
-
-        <button class="btn btn-secondary" type="submit">
-
-            Signaler ce commentaire
-        </button>
-    </form>
-
-</div>{% endfor %}{% endblock %}{% block script %}<script src="public/js/flag.js"></script><script></script>{% endblock %}
+    <button class="btn btn-secondary" type="submit">
+      Signaler ce commentaire
+    </button>
+  </form>
+</div>
+{% endfor %}{% endblock %}{% block script %}<script src="public/js/flag.js"></script
+>{% endblock %}

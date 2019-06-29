@@ -1,71 +1,73 @@
 {% extends 'homeLayout.twig' %}
-{% block title %}{% endblock %}
+{% block title %}
+<title> Espace Administrateur </title>
+{% endblock %}
 
 
 {% block nav %}
 
-    {{include("navbar.html.twig") }}
+{{include("navbar.html.twig") }}
 
 {% endblock %}
 
 
 {% block sectionIntro %}
 
-    <h1>Espace Administrateur</h1>
+<h1>Espace Administrateur</h1>
 
 {% endblock %}
 {% block admin %}
-    <div class="container">
-        <div class="row">
-            <div class="accesAdmin col-xs-5 justify-content-center text-center main">
+<div class="container">
+    <div class="row">
+        <div class="accesAdmin col-xs-5 justify-content-center text-center main">
 
-                <a href="index.php?action=writePostAcces">
-                    Ecrire un chapitre</a>
-            </div>
+            <a href="index.php?action=writePostAcces">
+                Ecrire un chapitre</a>
+        </div>
 
-            <div class="accesAdmin col-xs-offset-2 col-xs-5 justify-content-center text-center main">
+        <div class="accesAdmin col-xs-offset-2 col-xs-5 justify-content-center text-center main">
 
-                <a href="index.php?action=moderateComment">
-                    Modérer les commentaires
-                </a>
-                {% if nbCommentFlagged %}
-                    <p>
-                        Vous avez
-                        {{nbCommentFlagged}}
-                        commentaire(s) à modérer</p>
-                {% else %}
-                    <p>
-                        Vous n'avez aucun commentaire à modérer</p>
-                {% endif %}
-            </div>
+            <a href="index.php?action=moderateComment">
+                Modérer les commentaires
+            </a>
+            {% if nbCommentFlagged %}
+            <p>
+                Vous avez
+                {{nbCommentFlagged}}
+                commentaire(s) à modérer</p>
+            {% else %}
+            <p>
+                Vous n'avez aucun commentaire à modérer</p>
+            {% endif %}
         </div>
     </div>
+</div>
 {% endblock %}
 {% block post %}
-    <div class="admin">
-        {% if datas %}
-            <h4 class="main text-center">
-                Chapitre en cours de Rédaction
-            </h4>
+<div class="admin">
+    {% if datas %}
+    <h4 class="main text-center">
+        Chapitre en cours de Rédaction
+    </h4>
 
-            {% for data in datas %}
-                <article class="post container main">
+    {% for data in datas %}
+    <article class="post container main">
 
-                    <h3 class="postTitle">
-                        {{data.title | raw }}
-                    </h3>
+        <h3 class="postTitle">
+            {{data.title | raw }}
+        </h3>
 
-                    <div class="content">
-                        {{data.content | raw }}
-                    </div>
-                    <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
-                </article>
-                <hr>
-            {% endfor %}
-        {% else %}
-            <p class="main text-center">
-                Vous n'avez aucun chapitre en cours de rédaction
-            </p>
-        {% endif %}
-    </div>
+        <div class="content">
+            {{data.content | raw }}
+        </div>
+        <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
+    </article>
+    <hr>
+    {% endfor %}
+    {% else %}
+    <p class="main text-center">
+        Vous n'avez aucun chapitre en cours de rédaction
+    </p>
+    {% endif %}
+</div>
 {% endblock %}

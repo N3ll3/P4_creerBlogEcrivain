@@ -1,12 +1,12 @@
-/* font-family */
-
-
 body {
+    position: relative;
+    min-height: 100vh;
     background-image: url("../images/photoAlaska2.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Mali', cursive;
+
 }
 
 .main {
@@ -15,7 +15,7 @@ body {
     border: solid 1px#3A82C6;
     border-radius: 0.3em;
     font-family: 'Mali', cursive;
-
+    font-size: 1em;
 }
 
 .intro {
@@ -35,6 +35,7 @@ body {
     width: 100%;
     justify-content: center;
     text-align: center;
+    padding-bottom: 20px;
 }
 
 .page {
@@ -61,7 +62,6 @@ body {
     text-align: center;
     padding: 1%;
     color: #3A82C6;
-
 }
 
 .postTitle a,
@@ -98,15 +98,18 @@ body {
 .main a:visited,
 .main a:hover {
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
+h1 {}
 
 h2 {
     padding: 2%;
     text-align: center;
     width: 50%;
     margin: auto;
+    font-size: 1.2em !important;
+    font-weight: 900 !important;
 }
 
 h4 {
@@ -157,3 +160,9 @@ form {
 .tox {
     margin-bottom: 30px;
 }
+
+/* footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+} */

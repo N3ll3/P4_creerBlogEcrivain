@@ -1,46 +1,48 @@
 {% extends 'homeLayout.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}
+<title> Modération des commentaires </title>
+{% endblock %}
 
 
 {% block nav %}
-    {{include("navbar.html.twig") }}
+{{include("navbar.html.twig") }}
 
 {% endblock %}
 
 {% block sectionIntro %}
-    <h1>
-        Modération des Commentaires
-    </h1>
+<h1>
+    Modération des Commentaires
+</h1>
 
 {% endblock %}
 
 
 {% block comment %}
-    <h2 class="main">Commentaires signalés</h2>
+<h2 class="main">Commentaires signalés</h2>
 
-    {% if comments %}
-        {% for comment in comments %}
-            <div class="main comment">
-                <p>
-                    <strong>{{comment.author}}</strong>
-                    le
-                    {{comment.comment_date | date('d/m/Y') }}</p>
+{% if comments %}
+{% for comment in comments %}
+<div class="main comment">
+    <p>
+        <strong>{{comment.author}}</strong>
+        le
+        {{comment.comment_date | date('d/m/Y') }}</p>
 
-                <p>{{comment.comment}}</p>
+    <p>{{comment.comment}}</p>
 
-                <a class="btn btn-secondary" href="index.php?action=deleteComment&amp;idComment={{comment.id}}">
+    <a class="btn btn-secondary" href="index.php?action=deleteComment&amp;idComment={{comment.id}}">
 
-                    Supprimer</a>
+        Supprimer</a>
 
-                <a class="btn btn-secondary" href="index.php?action=unflagComment&amp;idComment={{comment.id}}">
-                    Conserver</a>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p class="main text-center">
+    <a class="btn btn-secondary" href="index.php?action=unflagComment&amp;idComment={{comment.id}}">
+        Conserver</a>
+</div>
+{% endfor %}
+{% else %}
+<p class="main text-center">
 
-            Il n'y a aucun commentaire signalé.
-        </p>
-    {% endif %}
+    Il n'y a aucun commentaire signalé.
+</p>
+{% endif %}
 {% endblock %}
