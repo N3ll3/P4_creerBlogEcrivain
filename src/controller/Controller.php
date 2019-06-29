@@ -13,6 +13,8 @@ class Controller
             'cache' => false /*__DIR__.'/view/frontend/tmp'*/
         ]);
         $twig->addExtension(new \Twig\Extension\DebugExtension());
+        $twig->addGlobal('session', $_SESSION);
+
         return $twig;
     }
 }
