@@ -5,9 +5,9 @@ namespace Controller;
 use Model\AdminManager;
 use Model\CommentManager;
 use Model\PostManager;
-use Helper\TwigLoader;
+use Controller\Controller;
 
-class AdminController extends TwigLoader
+class AdminController extends Controller
 {
     public function connexion()
     {

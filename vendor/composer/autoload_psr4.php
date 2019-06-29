@@ -12,7 +12,6 @@ return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Model\\' => array($baseDir . '/src/model'),
-    'Helper\\' => array($baseDir . '/src/helper'),
     'Controller\\' => array($baseDir . '/src/controller'),
     'Components\\' => array($baseDir . '/components'),
 );

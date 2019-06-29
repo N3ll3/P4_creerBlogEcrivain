@@ -1,8 +1,8 @@
 <?php
 
-namespace Helper;
+namespace Controller;
 
-class TwigLoader
+class Controller
 
 {
     protected function launchTwig()

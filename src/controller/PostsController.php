@@ -4,10 +4,10 @@ namespace Controller;
 
 use Model\PostManager;
 use Model\CommentManager;
-use Helper\TwigLoader;
+use Controller\Controller;
 
 
-class PostsController extends TwigLoader
+class PostsController extends Controller
 {
     public function listPosts()
     {

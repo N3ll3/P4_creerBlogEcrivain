@@ -3,12 +3,11 @@
 namespace Controller;
 
 use Model\CommentManager;
-use Helper\TwigLoader;
+use Controller\Controller;
 
-class CommentsController extends TwigLoader
+class CommentsController extends Controller
 
 {
-
     public function addComment($postId, $author, $content)
     {
         if (isset($_GET['id']) && $_GET['id'] > 0) {

@@ -17,8 +17,7 @@
       "Controller\\": "src/controller/",
       "Vendor\\": "vendor/",
       "Components\\": "components/",
-      "View\\": "src/view/",
-      "Helper\\": "src/helper/"
+      "View\\": "src/view/"
     }
   }
 }
