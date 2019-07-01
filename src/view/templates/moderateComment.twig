@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block sectionIntro %}
-<h1>
+<h1 class="main intro">
     Modération des Commentaires
 </h1>
 
@@ -33,11 +33,10 @@
 
     <p>{{comment.comment}}</p>
 
-    <a class="btn btn-secondary" href="index.php?action=deleteComment&amp;idComment={{comment.id}}">
-
+    <a class="btn btn-secondary moderate" href="index.php?action=deleteComment&amp;idComment={{comment.id}}">
         Supprimer</a>
 
-    <a class="btn btn-secondary" href="index.php?action=unflagComment&amp;idComment={{comment.id}}">
+    <a class="btn btn-secondary moderate" href="index.php?action=unflagComment&amp;idComment={{comment.id}}">
         Conserver</a>
 </div>
 {% endfor %}

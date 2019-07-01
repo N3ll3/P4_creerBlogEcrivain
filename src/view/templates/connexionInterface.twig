@@ -24,19 +24,15 @@
 {% endblock %}
 
 {% block sectionIntro %}
-<h1>
+<h1 class="main intro">
 
     Connectez-vous pour accéder à votre espace administration</h1>
-<p>
-    Entrer vos identifiants et mot de passe
-</p>
+
 {% endblock %}
 
 
 {% block admin %}
-
-<br>
-<br>
+<div class="container">
 <form action="index.php?action=signIn" class="main col-xs-offset-2 col-xs-8" id="connexionForm" method="POST">
 
     <label for="username">
@@ -44,29 +40,19 @@
     </label>
     <input class="form-control" id="username" name="username" required="required" type="text">
 
-    <br>
-    <br>
-
     <label for="psw">
         Entrer votre mot de passe :
     </label>
     <input class="form-control" id="psw" name="psw" required="required" type="password">
-
-    <br>
-    <br>
 
     <label for="rememberMe">
         Se souvenir de moi
     </label>
     <input id="rememberMe" name='rememberMe' type="checkbox">
 
-    <br>
-    <br>
-
-    <input class="btn btn-secondary form-control" id="validate" type="submit" value="Valider">
-
+    <input class="btn btn-secondary" id="validate" type="submit" value="Valider">
 
 </form>
-
+</div>
 
 {% endblock %}

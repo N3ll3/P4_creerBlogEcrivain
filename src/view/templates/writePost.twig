@@ -14,7 +14,7 @@
 
 
 {% block sectionIntro %}
-<h1>
+<h1 class="main intro">
     Ecrire votre chapitre
 </h1>
 
@@ -51,9 +51,9 @@
         </h2>
         <textarea id="content" name="content">{{post.content}}</textarea>
 
-        <input class="btn btn-secondary" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit"
+        <input class="btn btn-secondary form-control" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit"
             value="Publier"></input>
-        <input class="btn btn-secondary" formaction="index.php?action=deletePost&amp;idPost={{post.id}}" type="submit"
+        <input class="btn btn-secondary form-control" formaction="index.php?action=deletePost&amp;idPost={{post.id}}" type="submit"
             value="Supprimer"></input>
         {% endif %}
     </form>
