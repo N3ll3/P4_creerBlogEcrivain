@@ -18,8 +18,10 @@
 {% endblock %}
 
 
-{% block comment %}
-<h2 class="main">Commentaires signalés</h2>
+{% block admin %}
+
+<div class="container">
+<h2 class="main intro">Commentaires signalés</h2>
 
 {% if comments %}
 {% for comment in comments %}
@@ -45,4 +47,6 @@
     Il n'y a aucun commentaire signalé.
 </p>
 {% endif %}
+
+</div>
 {% endblock %}

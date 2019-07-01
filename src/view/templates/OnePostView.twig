@@ -62,7 +62,7 @@
   >
 </p>
 {% endblock %} {% block form %}
-<h2 class="main">Commentaires</h2>
+<h2 class="main intro">Commentaires</h2>
 <div class="container">
   <form
     action="index.php?action=addComment&amp;id={{ post.id }}"
@@ -94,18 +94,10 @@
   {% if comment.flagged > 0 %}
   <p class="flagged">
     Ce commentaire a été signalé
-    <span id="comment{{ comment.id | raw }}">{{ comment.flagged | raw }}</span>
+    <span id="comment{{ comment.id | raw }}" >{{ comment.flagged | raw }}</span>
     fois
   </p>
   {% endif %}
-  <p>
-    <strong>{{ comment.author }}</strong>
-    le
-    {{ comment.comment_date_fr }}
-  </p>
-
-  <p>{{ comment.comment }}</p>
-
   <form class="flagComment" id="flagComment{{ comment.id | raw }}">
     <input
       id="idComment"
@@ -113,8 +105,14 @@
       type="hidden"
       value="{{ comment.id | raw }}"
     />
+  <p>
+    <strong>{{ comment.author }}</strong>
+    le
+    {{ comment.comment_date_fr }}
+  </p>
 
-    <button class="btn btn-secondary" type="submit">
+  <p>{{ comment.comment }}</p>
+ <button class="btn btn-secondary" type="submit">
       Signaler ce commentaire
     </button>
   </form>

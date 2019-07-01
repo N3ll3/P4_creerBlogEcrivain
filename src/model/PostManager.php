@@ -26,7 +26,7 @@ class PostManager extends Manager
             'SELECT id, title, SUBSTRING(content, 1, 2000) AS content_limit, creation_date 
         FROM posts 
         WHERE published = 1 
-        ORDER BY id
+        ORDER BY creation_date
         LIMIT ' . $firstPost . ',' . $postPerPage . ''
         );
         $datas = $req->fetchAll();
@@ -67,7 +67,7 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $updatedPost = $db->prepare('UPDATE posts 
-        SET title=:modifiedTitle, content= :modifiedContent, creation_date = NOW(), published=1 
+        SET title=:modifiedTitle, content= :modifiedContent, published=1 
         WHERE id=:idPost');
         $modifiedPost = $updatedPost->execute(
             [

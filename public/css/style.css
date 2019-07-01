@@ -16,6 +16,7 @@ body {
     border-radius: 0.3em;
     font-family: 'Mali', cursive;
     font-size: 1em;
+    margin-bottom: 1em;
 }
 
 .intro {
@@ -89,10 +90,10 @@ body {
 }
 
 
-.accesAdmin {
+/* .accesAdmin {
     height: 80px;
     padding-top: 1em;
-}
+} */
 
 .main a,
 .main a:visited,
@@ -102,18 +103,15 @@ body {
 }
 
 h1 {
-    font-size: 1.2em !important;
+    font-size: 1.5em !important;
     font-weight: 900 !important;
-    text-overflow: "-";
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 h2 {
-    padding: 2%;
+    /* padding: 2%;
     text-align: center;
     width: 50%;
-    margin: auto;
+    margin: auto; */
     font-size: 1.2em !important;
     font-weight: 900 !important;
 }

@@ -1,6 +1,7 @@
 {% extends 'homeLayout.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}<title> Blog de Jean Forteroche, à la découverte de son nouveau roman </title>
+{% endblock %}
 
 
 {% block nav %}
@@ -64,7 +65,7 @@
             </a>
         {% endif %}
         <h3 class="postTitle main">
-            <a href="index.php?action=onePost&amp;id=  {{data.id }}">{{ data.title | raw}}</a>
+            <a href="index.php?action=onePost&amp;id={{data.id }}">{{ data.title | raw}}</a>
 
         </h3>
 
@@ -75,22 +76,19 @@
             {{data.content_limit | raw}} ...
          <p class="toBeContinued">
             <em>
-                <a href="index.php?action=onePost&amp;id=  {{data.id }}">
+                <a href="index.php?action=onePost&amp;id={{data.id }}">
                     Lire la suite et Voir les commentaires
                 </a>
             </em>
         </p>
-        </div>
-
-       
+        </div>     
     </article>
-</p>{% endfor %}{% endblock %}
+{% endfor %}{% endblock %}
 {% block paginationBottom %}
 <p class="pagination">
 
 {% for i in 1..nbPage %}
 <a class="main page" href="index.php?action=listPosts&amp;page={{i}}"> Page {{i}} </a>
 {% endfor %}
-
 </p>
 {% endblock %}
