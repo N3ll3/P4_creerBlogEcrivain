@@ -4,19 +4,22 @@ namespace Controller;
 
 use Model\PostManager;
 use Model\CommentManager;
-use Controller\Controller;
+use Controller\TwigSingleton;
 
 
-class PostsController extends Controller
+
+class PostsController
 {
+
+
     public function listPosts()
     {
         $postPerPage = 5;
         $postManager = new PostManager();
-        $nbPosts = $postManager->getNbOfAllPosts();
-        $nbOfPage = ceil(intval($nbPosts) / $postPerPage);
+        $numberPosts = $postManager->getNumberOfAllPosts();
+        $numberOfPage = ceil(intval($numberPosts) / $postPerPage);
         $page = 1;
-        if (isset($_GET['page']) and $_GET['page'] <= $nbOfPage) {
+        if (isset($_GET['page']) and $_GET['page'] <= $numberOfPage) {
             $page = $_GET['page'];
         } else {
             $page = 1;
@@ -25,11 +28,9 @@ class PostsController extends Controller
 
         $posts = $postManager->getFivePosts($firstPost, $postPerPage);
 
-        $twig = $this->launchTwig();
-
-        echo  $twig->render("listPostView.twig", [
+        echo  TwigSingleton::getTwig()->render("listPostView.twig", [
             'datas' => $posts,
-            'nbPage' => $nbOfPage
+            'nbPage' => $numberOfPage
         ]);
     }
 
@@ -41,20 +42,19 @@ class PostsController extends Controller
             $post = $postManager->getPost($_GET['id']);
             $posts = $postManager->getAllPosts();
             $currentIdPost = $_GET['id'];
-            $indexCurrentPost = array_search($currentIdPost, array_column($posts, "id"));
-            $nbPosts = count($posts);
+            $indexCurrentPost = \array_search($currentIdPost, \array_column($posts, "id"));
+            $numberPosts = \count($posts);
 
-            if ($indexCurrentPost < $nbPosts - 1) {
+            if ($indexCurrentPost < $numberPosts - 1) {
                 $indexNextPost = $indexCurrentPost + 1;
                 $idNextPost = $posts[$indexNextPost]['id'];
-            } elseif ($indexCurrentPost >= $nbPosts - 1) {
+            } elseif ($indexCurrentPost >= $numberPosts - 1) {
                 $idNextPost = '0';
             }
 
             $commentsData = $commentManager->getComments($_GET['id']);
 
-            $twig = $this->launchTwig();
-            echo  $twig->render("OnePostView.twig", [
+            echo TwigSingleton::getTwig()->render("OnePostView.twig", [
                 'post' => $post,
                 'comments' => $commentsData,
                 'nextPost' => $idNextPost
@@ -63,6 +63,24 @@ class PostsController extends Controller
             throw new \Exception('Aucun identifiant de billet envoyé');
         }
     }
+
+    public function writePost()
+    {
+        if (isset($_SESSION['isAuth'])) {
+            if (isset($_GET['idPost'])) {
+                $idPost = $_GET['idPost'];
+                $postManager = new PostManager();
+                $postSelected = $postManager->getPost($idPost);
+                echo TwigSingleton::getTwig()->render("writePost.twig", ['post' => $postSelected]);
+            } else {
+                echo TwigSingleton::getTwig()->render("writePost.twig");
+            }
+        } else {
+            echo TwigSingleton::getTwig()->render("connexionInterface.twig");
+        }
+    }
+
+
 
     public function publishPost($title, $content)
     {
@@ -77,7 +95,7 @@ class PostsController extends Controller
             ) {
                 throw new \Exception('Impossible d\'ajouter le nouvel article');
             } else {
-                header('Location:index.php?action=listPosts');
+                \header('Location:index.php?action=listPosts');
             }
         } else {
             throw new \Exception('Tous les champs ne sont pas remplis !');
@@ -94,7 +112,7 @@ class PostsController extends Controller
             ) {
                 throw new \Exception('Impossible de modifier l\'article');
             } else {
-                header('Location:index.php?action=listPosts');
+                \header('Location:index.php?action=listPosts');
             }
         } else {
             throw new \Exception('Tous les champs ne sont pas remplis !');
@@ -109,7 +127,7 @@ class PostsController extends Controller
             if ($savedPost == false) {
                 throw new \Exception('Impossible de sauvegarder le chapitre');
             } else {
-                header('Location:index.php?action=connexion');
+                \header('Location:index.php?action=connexion');
             }
         } else {
             throw new \Exception('Tous les champs ne sont pas remplis !');
@@ -125,7 +143,7 @@ class PostsController extends Controller
             if ($deletePost == false) {
                 throw new \Exception('Impossible de supprimer le chapitre');
             } else {
-                header('Location:index.php?action=connexion');
+                \header('Location:index.php?action=connexion');
             }
         } else {
             throw new \Exception('Le chapitre à supprimer n\'est pas indiqué');

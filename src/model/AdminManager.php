@@ -1,51 +1,48 @@
 <?php
+
 namespace Model;
 
 use Model\Manager;
 
 class AdminManager extends Manager
 {
+    protected $db;
 
-    public function registerUser($userName, $psw, $email)
+    public function  __construct()
     {
-        $pswHashed = password_hash($psw, PASSWORD_DEFAULT);
-        $db = $this->dbConnect();
-        $userData = $db->prepare('INSERT INTO users(username, psw, email) VALUES(:userName, :psw, :email)');
-        $userData->execute(array('userName' => $userName, 'psw' => $pswHashed, 'email' => $email));
-
-        // $db->closeCursor();
+        $this->db = $this->dbConnect();
     }
 
-    public function getAllUsers()
-    {
-        $db = $this->dbConnect();
-        $reqUsers = $db->query('SELECT * FROM users');
-
-        return $reqUsers;
-    }
-
-    public function getUser($userName)
-    {
-        $db = $this->dbConnect();
-        $userData = $db->prepare('SELECT * FROM users WHERE username = :userName');
-        $userData->execute(array('name' => $userName));
-        $user = $userData->fetch();
-
-        return $user;
-    }
-
-    public function getPsw($userName)
-    {
-        $db = $this->dbConnect();
-        $reqUser = $db->prepare('SELECT psw, username FROM users WHERE username = :username');
-        $reqUser->execute(array('username' => $userName));
-        $psw = $reqUser->fetch();
-        return $psw;
-    }
-
-    public function updateEmailUser($emailChanged, $userName)
+    public function registerUser($userName, $password, $email)
     { }
 
-    public function updatePswUser($newPsw, $userName)
-    { }
+    public function getPassword($userName)
+    {
+        $reqUser = $this->db->prepare(
+            'SELECT psw, username 
+            FROM users 
+            WHERE username = :username'
+        );
+        $reqUser->execute(['username' => $userName]);
+        $password = $reqUser->fetch();
+        return $password;
+    }
+
+
+    public function updatePasswordUser($newPassword, $userName)
+    {
+        $userData = $this->db->prepare(
+            'UPDATE users
+            SET psw = :new_password
+            WHERE username=:username'
+        );
+
+        $userData->execute(
+            [
+                'userName' => $userName,
+                'new_password' => $passwordHashed,
+            ]
+        );
+        $userData->closeCursor();
+    }
 }

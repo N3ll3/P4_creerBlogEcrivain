@@ -3,9 +3,9 @@
 namespace Controller;
 
 use Model\CommentManager;
-use Controller\Controller;
+use Controller\TwigSingleton;
 
-class CommentsController extends Controller
+class CommentsController
 
 {
     public function addComment($postId, $author, $content)
@@ -18,7 +18,7 @@ class CommentsController extends Controller
                 if ($comment === false) {
                     throw new \Exception('Impossible d\'ajouter le commentaire !');
                 } else {
-                    header('Location: index.php?action=onePost&id=' . $postId);
+                    \header('Location: index.php?action=onePost&id=' . $postId);
                 }
             } else {
                 throw new \Exception('Tous les champs ne sont pas remplis !');
@@ -30,7 +30,6 @@ class CommentsController extends Controller
     {
         if (isset($_GET['idComment']) && $_GET['idComment'] > 0) {
             $commentManager = new CommentManager();
-            $comment = $commentManager->getComment($idComment);
             $commentManager->isFlagged($idComment);
         } else {
             throw new \Exception('Aucun identifiant de billet envoyé');
@@ -39,15 +38,18 @@ class CommentsController extends Controller
 
     public function listFlaggedComments()
     {
-        $commentManager = new CommentManager();
-        $flaggedComments = $commentManager->getCommentsFlagged();
-        $twig = $this->launchTwig();
-        if (isset($flaggedComments)) {
-            echo  $twig->render("moderateComment.twig", [
-                'comments' => $flaggedComments,
-            ]);
+        if (isset($_SESSION['isAuth'])) {
+            $commentManager = new CommentManager();
+            $flaggedComments = $commentManager->getCommentsFlagged();
+            if (isset($flaggedComments)) {
+                echo  TwigSingleton::getTwig()->render("moderateComment.twig", [
+                    'comments' => $flaggedComments,
+                ]);
+            } else {
+                throw new \Exception('Il n\'y a aucun commentaire à modérer');
+            }
         } else {
-            throw new \Exception('Il n\'y a aucun commentaire à modérer');
+            echo TwigSingleton::getTwig()->render("connexionInterface.twig");
         }
     }
 

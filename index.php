@@ -47,10 +47,14 @@ try {
 
                 // Page Home Admin
             case 'writePostAcces':
-                $adminController->accesWritePost();
+                $postsController->writePost();
                 break;
             case 'logout':
                 $adminController->logout();
+                break;
+            case '';
+            case 'changePassword':
+                $adminController->changePassword();
                 break;
 
                 // Page Write Post

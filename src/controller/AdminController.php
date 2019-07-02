@@ -5,43 +5,42 @@ namespace Controller;
 use Model\AdminManager;
 use Model\CommentManager;
 use Model\PostManager;
-use Controller\Controller;
+use Controller\TwigSingleton;
 
-class AdminController extends Controller
+class AdminController
 {
     public function connexion()
     {
-        $twig = $this->launchTwig();
         if (isset($_SESSION['isAuth'])) {
             $commentManager = new CommentManager();
             $postManager = new PostManager();
-            $chapWIP = $postManager->getChapWIP();
+            $chapDraft = $postManager->getChapDraft();
             $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
 
-            echo $twig->render("homeAdmin.twig", [
+            echo TwigSingleton::getTwig()->render("homeAdmin.twig", [
                 'nbCommentFlagged' => $nbCommentFlagged,
-                'datas' => $chapWIP
+                'datas' => $chapDraft
             ]);
         } else {
-            echo $twig->render("connexionInterface.twig");
+            echo TwigSingleton::getTwig()->render("connexionInterface.twig");
         }
     }
 
     public function signIn()
     {
-        $userName = htmlspecialchars($_POST['username']);
-        $psw = htmlspecialchars($_POST['psw']);
+        $userName = \htmlspecialchars($_POST['username']);
+        $password = \htmlspecialchars($_POST['psw']);
 
         $adminManager = new AdminManager();
-        $userData = $adminManager->getPsw($userName);
+        $userData = $adminManager->getPassword($userName);
 
-        $isPasswordCorrect = password_verify($psw, $userData['psw']);
+        $isPasswordCorrect = \password_verify($password, $userData['psw']);
 
         if ($userData['username'] !== $userName) {
-            echo 'Mauvais identifiant <br> <a href="index.php?action=connexion"> Try Again</a> <br>';
+            echo 'Mauvais identifiant <br> <a href="index.php?action=connexion"> Réessayer</a> <br>';
         } else {
             if (!$isPasswordCorrect) {
-                echo 'Mot de passe incorrect <br> <a href="index.php?action=connexion"> Try Again</a> <br>';
+                echo 'Mot de passe incorrect <br> <a href="index.php?action=connexion"> Réessayer</a> <br>';
             } else {
                 $_SESSION['isAuth'] = true;
                 \header('Location:index.php?action=connexion');
@@ -49,39 +48,32 @@ class AdminController extends Controller
         }
     }
 
-    public function accesWritePost()
+    public function accesChangePassword()
     {
-        $twig = $this->launchTwig();
-
         if (isset($_SESSION['isAuth'])) {
-            if (isset($_GET['idPost'])) {
-                $idPost = $_GET['idPost'];
-                $postManager = new PostManager();
-                $postSelected = $postManager->getPost($idPost);
-                echo $twig->render("writePost.twig", ['post' => $postSelected]);
-            } else {
-                echo $twig->render("writePost.twig");
-            }
+            echo TwigSingleton::getTwig()->render("changePassword.twig");
         } else {
-            echo $twig->render("connexionInterface.twig");
-        }
-    }
-
-    public function accesModerateComment()
-    {
-        $twig = $this->launchTwig();
-
-        if (isset($_SESSION['isAuth'])) {
-            echo $twig->render("moderateComment.twig");
-        } else {
-            echo $twig->render("connexionInterface.twig");
+            echo TwigSingleton::getTwig()->render("connexionInterface.twig");
         }
     }
 
     public function logout()
     {
         $_SESSION = array();
-        session_destroy();
-        header('Location:index.php?action=listPosts');
+        \session_destroy();
+        \header('Location:index.php?action=listPosts');
+    }
+
+    public function changePassword()
+    {
+        $userName = \htmlspecialchars($_POST['username']);
+        $newPassword = \htmlspecialchars($_POST['newpassword']);
+        if (isset($userName) && isset($newPassword)) {
+            $passwordHashed = password_hash($newPassword, PASSWORD_DEFAULT);
+            $adminManager = new AdminManager();
+            $adminManager->updatePasswordUser($passwordHashed, $userName);
+        } else {
+            throw new \Exception('Votre mot de passe n\' a pu être changé');
+        }
     }
 }
