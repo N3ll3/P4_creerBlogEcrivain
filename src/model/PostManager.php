@@ -19,6 +19,20 @@ class PostManager extends Manager
         return $nbPost[0];
     }
 
+    public function getAllPosts()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query(
+            'SELECT id 
+        FROM posts 
+        WHERE published = 1 
+        ORDER BY creation_date'
+        );
+        $datas = $req->fetchAll();
+        $req->closeCursor();
+        return $datas;
+    }
+
     public function getFivePosts($firstPost, $postPerPage)
     {
         $db = $this->dbConnect();

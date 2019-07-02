@@ -39,11 +39,25 @@ class PostsController extends Controller
             $postManager = new PostManager();
             $commentManager = new CommentManager();
             $post = $postManager->getPost($_GET['id']);
+            $posts = $postManager->getAllPosts();
+            $currentIdPost = $_GET['id'];
+            $indexCurrentPost = array_search($currentIdPost, array_column($posts, "id"));
+            $nbPosts = count($posts);
+
+            if ($indexCurrentPost < $nbPosts - 1) {
+                $indexNextPost = $indexCurrentPost + 1;
+                $idNextPost = $posts[$indexNextPost]['id'];
+            } elseif ($indexCurrentPost >= $nbPosts - 1) {
+                $idNextPost = '0';
+            }
+
             $commentsData = $commentManager->getComments($_GET['id']);
+
             $twig = $this->launchTwig();
             echo  $twig->render("OnePostView.twig", [
                 'post' => $post,
-                'comments' => $commentsData
+                'comments' => $commentsData,
+                'nextPost' => $idNextPost
             ]);
         } else {
             throw new \Exception('Aucun identifiant de billet envoyé');
