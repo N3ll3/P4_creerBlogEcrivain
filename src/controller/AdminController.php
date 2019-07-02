@@ -48,7 +48,7 @@ class AdminController
         }
     }
 
-    public function accesChangePassword()
+    public function accessChangePassword()
     {
         if (isset($_SESSION['isAuth'])) {
             echo TwigSingleton::getTwig()->render("changePassword.twig");
@@ -67,13 +67,24 @@ class AdminController
     public function changePassword()
     {
         $userName = \htmlspecialchars($_POST['username']);
-        $newPassword = \htmlspecialchars($_POST['newpassword']);
-        if (isset($userName) && isset($newPassword)) {
-            $passwordHashed = password_hash($newPassword, PASSWORD_DEFAULT);
-            $adminManager = new AdminManager();
-            $adminManager->updatePasswordUser($passwordHashed, $userName);
+        $oldPassword = \htmlspecialchars($_POST['oldPassword']);
+        $newPassword = \htmlspecialchars($_POST['newPassword']);
+
+        $adminManager = new AdminManager();
+        $userData = $adminManager->getPassword($userName);
+
+        $isPasswordCorrect = \password_verify($oldPassword, $userData['psw']);
+
+        if ($userData['username'] !== $userName) {
+            echo 'Mauvais identifiant <br> <a href="index.php?action=accessChangePassword"> Réessayer</a> <br>';
         } else {
-            throw new \Exception('Votre mot de passe n\' a pu être changé');
+            if (!$isPasswordCorrect) {
+                echo 'Mot de passe incorrect <br> <a href="index.php?action=accessChangePassword"> Réessayer</a> <br>';
+            } else {
+                $passwordHashed = password_hash($newPassword, PASSWORD_DEFAULT);
+                $adminManager->updatePasswordUser($passwordHashed, $userName);
+                echo TwigSingleton::getTwig()->render("connexionInterface.twig");
+            }
         }
     }
 }

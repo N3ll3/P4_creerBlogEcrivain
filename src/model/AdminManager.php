@@ -13,9 +13,6 @@ class AdminManager extends Manager
         $this->db = $this->dbConnect();
     }
 
-    public function registerUser($userName, $password, $email)
-    { }
-
     public function getPassword($userName)
     {
         $reqUser = $this->db->prepare(
@@ -39,8 +36,8 @@ class AdminManager extends Manager
 
         $userData->execute(
             [
-                'userName' => $userName,
-                'new_password' => $passwordHashed,
+                'username' => $userName,
+                'new_password' => $newPassword
             ]
         );
         $userData->closeCursor();

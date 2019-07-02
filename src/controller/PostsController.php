@@ -6,12 +6,8 @@ use Model\PostManager;
 use Model\CommentManager;
 use Controller\TwigSingleton;
 
-
-
 class PostsController
 {
-
-
     public function listPosts()
     {
         $postPerPage = 5;
@@ -25,7 +21,6 @@ class PostsController
             $page = 1;
         }
         $firstPost = ($page - 1) * $postPerPage;
-
         $posts = $postManager->getFivePosts($firstPost, $postPerPage);
 
         echo  TwigSingleton::getTwig()->render("listPostView.twig", [
@@ -79,8 +74,6 @@ class PostsController
             echo TwigSingleton::getTwig()->render("connexionInterface.twig");
         }
     }
-
-
 
     public function publishPost($title, $content)
     {

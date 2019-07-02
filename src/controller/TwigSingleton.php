@@ -10,7 +10,7 @@ class TwigSingleton
     static function getTwig()
     {
         if (!self::$twig) {
-            $loader = new \Twig\Loader\FilesystemLoader('src\view\templates');
+            $loader = new \Twig\Loader\FilesystemLoader('src/view/templates');
             self::$twig = new \Twig\Environment($loader, [
                 'debug' => true,
                 'cache' => false

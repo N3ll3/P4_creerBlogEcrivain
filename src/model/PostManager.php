@@ -15,11 +15,12 @@ class PostManager extends Manager
 
     public function getNumberOfAllPosts()
     {
-
-        $req = $this->db->query('SELECT COUNT(*)
+        $req = $this->db->query(
+            'SELECT COUNT(*)
         FROM posts 
         WHERE published = 1 
-        ORDER BY id');
+        ORDER BY id'
+        );
         $nbPost = $req->fetch();
         $req->closeCursor();
 
@@ -52,7 +53,6 @@ class PostManager extends Manager
         $req->closeCursor();
         return $datas;
     }
-
 
     public function getPost($postId)
     {
@@ -89,7 +89,8 @@ class PostManager extends Manager
         $updatedPost = $this->db->prepare(
             'UPDATE posts 
         SET title=:modifiedTitle, content= :modifiedContent, published=1 
-        WHERE id=:idPost');
+        WHERE id=:idPost'
+        );
         $modifiedPost = $updatedPost->execute(
             [
                 'modifiedTitle' => $title,

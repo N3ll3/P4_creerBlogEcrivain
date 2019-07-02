@@ -52,7 +52,9 @@ try {
             case 'logout':
                 $adminController->logout();
                 break;
-            case '';
+            case 'accessChangePassword':
+                $adminController->accessChangePassword();
+                break;
             case 'changePassword':
                 $adminController->changePassword();
                 break;
