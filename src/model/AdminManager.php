@@ -25,7 +25,6 @@ class AdminManager extends Manager
         return $password;
     }
 
-
     public function updatePasswordUser($newPassword, $userName)
     {
         $userData = $this->db->prepare(

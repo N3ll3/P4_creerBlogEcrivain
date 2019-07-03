@@ -1,3 +1,5 @@
+/* -------------- General -------------- */
+
 body {
     position: relative;
     min-height: 100vh;
@@ -6,8 +8,27 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Mali', cursive;
-
 }
+
+h1 {
+    font-size: 1.8em !important;
+    font-weight: 900 !important;
+    overflow-wrap: break-word;
+}
+
+h2 {
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+    font-size: 1.2em !important;
+    font-weight: 900 !important;
+}
+
+h4 {
+    width: 80%;
+    margin: auto;
+}
+
 
 .main {
     color: #272F28;
@@ -19,7 +40,19 @@ body {
     margin-bottom: 1em;
 }
 
+.main a,
+.main a:visited,
+.main a:hover {
+    text-decoration: none;
+    font-size: 1.5em;
+}
 
+/*--------------- navigation -------------*/
+.navbar-brand {
+    white-space: normal !important;
+}
+
+/*--------------- section Intro ------------------ */
 .intro {
     text-align: center;
     width: 100%;
@@ -30,6 +63,9 @@ body {
     padding-bottom: 10px;
     box-shadow: 5px 2px 2px #3A82C6;
 }
+
+
+/*------------------- pagination ------------------- */
 
 .pagination {
     margin-left: auto;
@@ -45,18 +81,7 @@ body {
     font-size: 1em;
 }
 
-.comment {
-    padding: 5px;
-    margin-top: 10px;
-}
-
-
-.flagged {
-    color: red;
-    font-style: italic;
-    font-size: 0.8em;
-}
-
+/*---------------- chapiters ------------------*/
 .postTitle {
     font-size: 1.5em;
     font-weight: 300;
@@ -82,50 +107,32 @@ body {
     padding: 2%;
 }
 
-.admin {
+.modifChap {
+    line-height: 10px;
+}
+
+.content {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
-
-.accesAdmin {
-    padding: 5px;
+.toBeContinued {
+    font-size: 0.8em;
 }
 
-.main a,
-.main a:visited,
-.main a:hover {
-    text-decoration: none;
-    font-size: 1.5em;
-}
-
-h1 {
-    font-size: 1.8em !important;
-    font-weight: 900 !important;
-    overflow-wrap: break-word;
-}
-
-h2 {
-    padding: 10px;
-    width: 50%;
-    margin: auto;
-    font-size: 1.2em !important;
-    font-weight: 900 !important;
-}
-
-h4 {
+#writePost {
     width: 80%;
-    margin: auto;
 }
 
-form {
-    width: 50%;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+/* ----------------comments--------------- */
+.comment {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.flagged {
+    color: red;
+    font-style: italic;
+    font-size: 0.8em;
 }
 
 .flagComment {
@@ -146,20 +153,18 @@ form {
     height: auto;
 }
 
-.modifChap {
-    line-height: 10px;
+.moderate {
+    border-style: solid;
+    background-color: white;
+    font-size: 1em !important;
 }
 
-.content {
-    width: 100%;
-}
-
-.toBeContinued {
-    font-size: 0.8em;
-}
-
-#writePost {
-    width: 80%;
+/*--------------- form ------------------- */
+form {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
 }
 
 #titleForm {
@@ -174,8 +179,17 @@ form {
     margin: 5px;
 }
 
-.moderate {
-    border-style: solid;
-    background-color: white;
+
+/*--------------- section admin------------- */
+.link {
     font-size: 1em !important;
+    padding: 5px;
+}
+
+.accesAdmin {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

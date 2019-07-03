@@ -17,30 +17,28 @@
 
 {% endblock %}
 {% block admin %}
-<div class="container">
-    <div class="row">
-        <div class="accesAdmin justify-content-center text-center main">
 
-            <a href="index.php?action=writePostAcces">
-                Ecrire un chapitre</a>
-        </div>
+<div class="accesAdmin justify-content-center text-center main">
 
-        <div class="accesAdmin justify-content-center text-center main">
+    <a class="link"  href="index.php?action=writePostAcces">
+        Ecrire un chapitre</a>
+</div>
 
-            <a href="index.php?action=moderateComment">
-                Modérer les commentaires
-            </a>
-            {% if nbCommentFlagged %}
-            <p>
-                Vous avez
-                {{nbCommentFlagged}}
-                commentaire(s) à modérer</p>
-            {% else %}
-            <p>
-                Vous n'avez aucun commentaire à modérer</p>
-            {% endif %}
-        </div>
-    </div>
+<div class="accesAdmin justify-content-center text-center main">
+
+    <a class="link" href="index.php?action=moderateComment">
+        Modérer les commentaires
+    </a>
+    {% if nbCommentFlagged %}
+    <p>
+        Vous avez
+        {{nbCommentFlagged}}
+        commentaire(s) à modérer</p>
+    {% else %}
+    <p>
+        Vous n'avez aucun commentaire à modérer</p>
+    {% endif %}
+
 </div>
 {% endblock %}
 {% block post %}
@@ -60,7 +58,8 @@
         <div class="content">
             {{data.content | raw }}
         </div>
-        <a href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la rédaction du chapitre</a>
+        <a class="btn btn-secondary" href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la
+            rédaction du chapitre</a>
     </article>
     <hr>
     {% endfor %}
