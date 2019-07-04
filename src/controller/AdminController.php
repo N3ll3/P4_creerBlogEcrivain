@@ -37,10 +37,10 @@ class AdminController
         $isPasswordCorrect = \password_verify($password, $userData['psw']);
 
         if ($userData['username'] !== $userName) {
-            echo 'Mauvais identifiant <br> <a href="index.php?action=connexion"> Réessayer</a> <br>';
+            echo TwigSingleton::getTwig()->render("erreur.twig");
         } else {
             if (!$isPasswordCorrect) {
-                echo 'Mot de passe incorrect <br> <a href="index.php?action=connexion"> Réessayer</a> <br>';
+                echo TwigSingleton::getTwig()->render("erreur.twig");
             } else {
                 $_SESSION['isAuth'] = true;
                 \header('Location:index.php?action=connexion');

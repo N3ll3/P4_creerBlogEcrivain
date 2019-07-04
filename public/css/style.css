@@ -25,7 +25,9 @@ h2 {
 }
 
 h4 {
-    width: 80%;
+
+    font-size: 1.5em !important;
+    width: 70% !important;
     margin: auto;
 }
 
@@ -48,7 +50,7 @@ h4 {
 .main a:visited,
 .main a:hover {
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 /*--------------- navigation -------------*/
@@ -87,7 +89,7 @@ h4 {
 
 /*---------------- chapiters ------------------*/
 .postTitle {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 300;
     margin-bottom: 0px;
     text-align: center;
@@ -196,4 +198,10 @@ form {
     margin-left: auto;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+
+
+footer {
+    margin-top: 20%;
 }
