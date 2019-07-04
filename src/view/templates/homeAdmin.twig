@@ -41,8 +41,9 @@
 
 </div>
 {% endblock %}
+
 {% block post %}
-<div class="admin">
+{# <div class="admin"> #}
     {% if datas %}
     <h4 class="main text-center">
         Chapitre en cours de Rédaction
@@ -51,12 +52,12 @@
     {% for data in datas %}
     <article class="post container main">
 
-        <h3 class="postTitle">
+        <h3 class="postTitle main">
             {{data.title | raw }}
         </h3>
 
         <div class="content">
-            {{data.content | raw }}
+            {{data.content_limit | raw}}
         </div>
         <a class="btn btn-secondary" href="index.php?action=writePostAcces&amp;idPost={{data.id}}">Continuer la
             rédaction du chapitre</a>
@@ -68,5 +69,5 @@
         Vous n'avez aucun chapitre en cours de rédaction
     </p>
     {% endif %}
-</div>
+{# </div> #}
 {% endblock %}

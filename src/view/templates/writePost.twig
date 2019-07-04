@@ -52,7 +52,7 @@
         <textarea id="content" name="content">{{post.content}}</textarea>
         <input id="idPost" type="hidden" value="{{post.id | raw}}"></input>
         <input class="btn btn-secondary" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit"
-            value="Modifier"></input>
+            value="Publier / Modifier"></input>
         <input class="btn btn-secondary" value="Supprimer" id="delete" type="button"> </input>
         {% endif %}
     </form>

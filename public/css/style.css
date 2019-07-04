@@ -40,6 +40,10 @@ h4 {
     margin-bottom: 1em;
 }
 
+.main p {
+    background-color: #C2CBD0;
+}
+
 .main a,
 .main a:visited,
 .main a:hover {

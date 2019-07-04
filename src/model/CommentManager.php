@@ -91,6 +91,16 @@ class CommentManager extends Manager
         return $nbCommentToModerate[0];
     }
 
+    public function deleteComments($idPost)
+    {
+        $req = $this->db->prepare(
+            'DELETE FROM comments
+        WHERE post_id=:idPost'
+        );
+        $commentsDeleted = $req->execute(['idPost' => $idPost]);
+        return $commentsDeleted;
+    }
+
     public function deleteComment($idComment)
     {
         $req = $this->db->prepare(

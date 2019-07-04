@@ -116,7 +116,7 @@ class PostManager extends Manager
     public function getChapDraft()
     {
         $req = $this->db->query(
-            'SELECT id, title, content,creation_date 
+            'SELECT id, title, SUBSTRING(content, 1, 1000) AS content_limit, creation_date 
         FROM posts 
         WHERE published = 0'
         );
