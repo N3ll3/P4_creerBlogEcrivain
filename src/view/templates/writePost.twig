@@ -50,11 +50,14 @@
             Contenu de votre chapitre
         </h2>
         <textarea id="content" name="content">{{post.content}}</textarea>
-
-        <input class="btn btn-secondary form-control" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit"
-            value="Publier"></input>
-        <input class="btn btn-secondary form-control" formaction="index.php?action=deletePost&amp;idPost={{post.id}}" type="submit"
-            value="Supprimer"></input>
+        <input id="idPost" type="hidden" value="{{post.id | raw}}"></input>
+        <input class="btn btn-secondary" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit"
+            value="Modifier"></input>
+        <input class="btn btn-secondary" value="Supprimer" id="delete" type="button"> </input>
         {% endif %}
     </form>
+    {% endblock %}
+
+    {% block script %}
+    <script src="public/js/delete.js"></script>
     {% endblock %}
