@@ -40,7 +40,6 @@ try {
             case 'connexion':
                 $adminController->connexion();
                 break;
-
             case 'signIn':
                 $adminController->signIn();
                 break;
@@ -63,15 +62,12 @@ try {
             case 'publishPost':
                 $postsController->publishPost($_POST['title'], $_POST['content']);
                 break;
-
             case 'modifyPost':
                 $postsController->modifyPost($_POST['title'], $_POST['content'], $_GET['idPost']);
                 break;
-
             case 'savePost':
                 $postsController->savePost($_POST['title'], $_POST['content']);
                 break;
-
             case 'deletePost':
                 $postsController->deletePost($_GET['idPost']);
                 break;
@@ -81,11 +77,9 @@ try {
             case 'moderateComment':
                 $commentsController->listFlaggedComments();
                 break;
-
             case 'deleteComment':
                 $commentsController->deleteComment($_GET['idComment']);
                 break;
-
             case 'unflagComment':
                 $commentsController->approveComment($_GET['idComment']);
                 break;
@@ -100,6 +94,5 @@ try {
     }
 } catch (\Exception $e) {
     $errorMessage = $e->getMessage();
-    // require('view/errorView.php');
     echo 'Erreur : ' . $e->getMessage();
 }
