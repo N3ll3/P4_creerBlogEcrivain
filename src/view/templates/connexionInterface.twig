@@ -1,0 +1,57 @@
+{% extends 'homeLayout.twig' %}
+{% block title %}
+<title> Accès à l'espace Administrateur</title>
+{% endblock %}
+{% block script %}
+
+<script src="public/js/rememberMe.js"></script>
+
+{% endblock %}
+
+{% block nav %}
+<div class="navbar-header">
+    <p class="navbar-brand">
+        Blog de Jean Forteroche, acteur et écrivain
+    </p>
+
+</div>
+<ul class="nav navbar-nav">
+    <li>
+        <a href="index.php">Retour à la liste des chapitres</a>
+    </li>
+</ul>
+
+{% endblock %}
+
+{% block sectionIntro %}
+<h1 class="main intro">
+
+    Connectez-vous pour accéder à votre espace administration</h1>
+
+{% endblock %}
+
+
+{% block admin %}
+<div class="container">
+<form action="index.php?action=signIn" class="main col-xs-offset-2 col-xs-8" id="connexionForm" method="POST">
+
+    <label for="username">
+        Entrer votre identifiant :
+    </label>
+    <input class="form-control" id="username" name="username" required="required" type="text">
+
+    <label for="psw">
+        Entrer votre mot de passe :
+    </label>
+    <input class="form-control" id="psw" name="psw" required="required" type="password">
+        <label for="rememberMe">
+        Se souvenir de moi
+    </label>
+    <input id="rememberMe" name='rememberMe' type="checkbox">
+   
+    <input class="btn btn-secondary" id="validate" type="submit" value="Valider">
+
+</form>
+</div>
+
+{% endblock %}

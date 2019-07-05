@@ -1,0 +1,38 @@
+<div class="navbar navbar-header">
+
+    <a class="navbar-brand" href="index.php">
+        Blog de Jean Forteroche
+    </a>
+</div>
+
+<ul class="nav navbar-nav navbar-expand-sm justify-content-center">
+    <!-- <li class="hidden"><a href="index.php"></a></li> -->
+    <li class="nav-item mx-3">
+        <a class="nav-link" href="index.php">Modifier un chapitre</a>
+    </li>
+
+    <li class="nav-item mx-3">
+        <a class="nav-link" href="index.php?action=writePostAcces">Ecrire un chapitre</a>
+    </li>
+    <li class="nav-item mx-3">
+        <a class="nav-link" href="index.php?action=moderateComment">Modération des commentaires</a>
+    </li>
+</ul>
+
+<div class="collapse" id="navAdmin">
+    <ul class="nav navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?action=connexion">Espace Administrateur</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="index.php?action=accessChangePassword">Changer mon mot de
+                passe</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?action=logout">Se déconnecter</a>
+        </li>
+    </ul>
+</div>
+<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navAdmin">
+    <span>Mon compte</span>
+    <span class="navbar-toggler-icon"></span>
+</button>

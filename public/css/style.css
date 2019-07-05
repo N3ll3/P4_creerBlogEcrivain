@@ -1,0 +1,207 @@
+/* -------------- General -------------- */
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background-image: url("../images/photoAlaska2.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Mali', cursive;
+}
+
+h1 {
+    font-size: 1.8em !important;
+    font-weight: 900 !important;
+    overflow-wrap: break-word;
+}
+
+h2 {
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+    font-size: 1.2em !important;
+    font-weight: 900 !important;
+}
+
+h4 {
+
+    font-size: 1.5em !important;
+    width: 70% !important;
+    margin: auto;
+}
+
+
+.main {
+    color: #272F28;
+    background-color: #C2CBD0;
+    border: solid 1px#3A82C6;
+    border-radius: 0.3em;
+    font-family: 'Mali', cursive;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.main p {
+    background-color: #C2CBD0;
+}
+
+.main a,
+.main a:visited,
+.main a:hover {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+/*--------------- navigation -------------*/
+.navbar-brand {
+    white-space: normal !important;
+}
+
+/*--------------- section Intro ------------------ */
+.intro {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 15px;
+    padding-bottom: 10px;
+    box-shadow: 5px 2px 2px #3A82C6;
+}
+
+
+/*------------------- pagination ------------------- */
+
+.pagination {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.page {
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+/*---------------- chapiters ------------------*/
+.postTitle {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-bottom: 0px;
+    text-align: center;
+    padding: 1%;
+    color: #3A82C6;
+}
+
+.postTitle a,
+.postTitle a:visited,
+.postTitle a:active,
+.postTitle a:hover {
+    text-decoration: none;
+}
+
+.date {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.post {
+    padding: 2%;
+}
+
+.modifChap {
+    line-height: 10px;
+}
+
+.content {
+    width: 100%;
+}
+
+.toBeContinued {
+    font-size: 0.8em;
+}
+
+#writePost {
+    width: 80%;
+}
+
+/* ----------------comments--------------- */
+.comment {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.flagged {
+    color: red;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+.flagComment {
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    padding: 5px;
+}
+
+.formComment textarea {
+    width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.formComment input {
+    width: 80%;
+    height: auto;
+}
+
+.moderate {
+    border-style: solid;
+    background-color: white;
+    font-size: 1em !important;
+}
+
+/*--------------- form ------------------- */
+form {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+#titleForm {
+    width: 80%;
+}
+
+.tox {
+    margin-bottom: 30px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+
+/*--------------- section admin------------- */
+.link {
+    font-size: 1em !important;
+    padding: 5px;
+}
+
+.accesAdmin {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+
+footer {
+    margin-top: 20%;
+}

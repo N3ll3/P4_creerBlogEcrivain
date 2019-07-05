@@ -1,0 +1,63 @@
+{% extends 'homeLayout.twig' %}
+{% block title %}
+
+<title> Ecrire un chapitre </title>
+
+{% endblock %}
+
+
+{% block nav %}
+
+{{include("navbar.html.twig") }}
+
+{% endblock %}
+
+
+{% block sectionIntro %}
+<h1 class="main intro">
+    Ecrire votre chapitre
+</h1>
+
+
+{% endblock %}
+
+{% block admin %}
+
+{% if post is null %}
+<form id="writePost" method="post">
+    <h2 class="main">
+        Titre de votre chapitre
+    </h2>
+    <textarea id="titleForm" name="title"></textarea>
+    <h2 class="main">
+        Contenu de votre chapitre
+    </h2>
+    <textarea id="content" name="content"></textarea>
+    <input class="btn btn-secondary" formaction="index.php?action=publishPost" id="published" type="submit"
+        value="Publier"></input>
+    <input class="btn btn-secondary" formaction="index.php?action=savePost" type="submit"
+        value="Conserver comme brouillon"></input>
+
+
+    {% else %}
+    <form id="writePost" method="post">
+        <h2 class="main">
+            Titre de votre chapitre
+        </h2>
+        <textarea id="titleForm" name="title">
+            {{post.title}}</textarea>
+        <h2 class="main">
+            Contenu de votre chapitre
+        </h2>
+        <textarea id="content" name="content">{{post.content}}</textarea>
+        <input id="idPost" type="hidden" value="{{post.id | raw}}"></input>
+        <input class="btn btn-secondary" formaction="index.php?action=modifyPost&amp;idPost={{post.id}}" type="submit"
+            value="Publier / Modifier"></input>
+        <input class="btn btn-secondary" value="Supprimer" id="delete" type="button"> </input>
+        {% endif %}
+    </form>
+    {% endblock %}
+
+    {% block script %}
+    <script src="public/js/delete.js"></script>
+    {% endblock %}
