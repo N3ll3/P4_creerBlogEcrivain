@@ -10,6 +10,7 @@ class PostsController
 {
     public function listPosts()
     {
+        //pagination
         $postPerPage = 5;
         $postManager = new PostManager();
         $numberPosts = $postManager->getNumberOfAllPosts();
@@ -21,6 +22,8 @@ class PostsController
             $page = 1;
         }
         $firstPost = ($page - 1) * $postPerPage;
+
+        //show five posts
         $posts = $postManager->getFivePosts($firstPost, $postPerPage);
 
         echo  TwigSingleton::getTwig()->render("listPostView.twig", [
@@ -34,20 +37,24 @@ class PostsController
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $postManager = new PostManager();
             $commentManager = new CommentManager();
+
+            //Post chosen
             $post = $postManager->getPost($_GET['id']);
+
+            // comments linked to post chosen
+            $commentsData = $commentManager->getComments($_GET['id']);
+
+            // Next chapter
             $posts = $postManager->getAllPosts();
+            $numberPosts = \count($posts);
             $currentIdPost = $_GET['id'];
             $indexCurrentPost = \array_search($currentIdPost, \array_column($posts, "id"));
-            $numberPosts = \count($posts);
-
             if ($indexCurrentPost < $numberPosts - 1) {
                 $indexNextPost = $indexCurrentPost + 1;
                 $idNextPost = $posts[$indexNextPost]['id'];
             } elseif ($indexCurrentPost >= $numberPosts - 1) {
                 $idNextPost = '0';
             }
-
-            $commentsData = $commentManager->getComments($_GET['id']);
 
             echo TwigSingleton::getTwig()->render("OnePostView.twig", [
                 'post' => $post,

@@ -27,19 +27,6 @@ class PostManager extends Manager
         return $nbPost[0];
     }
 
-    public function getAllPosts()
-    {
-        $req = $this->db->query(
-            'SELECT id 
-        FROM posts 
-        WHERE published = 1 
-        ORDER BY creation_date'
-        );
-        $datas = $req->fetchAll();
-        $req->closeCursor();
-        return $datas;
-    }
-
     public function getFivePosts($firstPost, $postPerPage)
     {
         $req = $this->db->query(
@@ -48,6 +35,19 @@ class PostManager extends Manager
         WHERE published = 1 
         ORDER BY creation_date
         LIMIT ' . $firstPost . ',' . $postPerPage . ''
+        );
+        $datas = $req->fetchAll();
+        $req->closeCursor();
+        return $datas;
+    }
+
+    public function getAllPosts()
+    {
+        $req = $this->db->query(
+            'SELECT id 
+        FROM posts 
+        WHERE published = 1 
+        ORDER BY creation_date'
         );
         $datas = $req->fetchAll();
         $req->closeCursor();

@@ -45,6 +45,17 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    public function isFlagged($idComment)
+    {
+        $commentFlagged = $this->db->prepare(
+            'UPDATE comments 
+            SET flagged = flagged + 1
+            WHERE id =:idComment'
+        );
+        $isFlagged = $commentFlagged->execute(['idComment' => $idComment]);
+        return $isFlagged;
+    }
+
     public function getComment($idComment)
     {
         $req = $this->db->prepare(
@@ -55,17 +66,6 @@ class CommentManager extends Manager
         $req->execute(['idcomment' => $idComment]);
         $comment = $req->fetch();
         return $comment;
-    }
-
-    public function isFlagged($idComment)
-    {
-        $commentFlagged = $this->db->prepare(
-            'UPDATE comments 
-            SET flagged = flagged + 1
-            WHERE id =:idComment'
-        );
-        $isFlagged = $commentFlagged->execute(['idComment' => $idComment]);
-        return $isFlagged;
     }
 
     public function getCommentsFlagged()

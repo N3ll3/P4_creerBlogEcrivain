@@ -28,7 +28,7 @@ try {
                 $postsController->onePost();
                 break;
             case 'addComment':
-                $commentsController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                $commentsController->addComment(\htmlspecialchars($_GET['id']), \htmlspecialchars($_POST['author']), \htmlspecialchars($_POST['comment']));
                 break;
             case 'flag':
                 $commentsController->flagComment($_GET['idComment']);

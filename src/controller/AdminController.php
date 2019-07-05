@@ -9,22 +9,6 @@ use Controller\TwigSingleton;
 
 class AdminController
 {
-    public function connexion()
-    {
-        if (isset($_SESSION['isAuth'])) {
-            $commentManager = new CommentManager();
-            $postManager = new PostManager();
-            $chapDraft = $postManager->getChapDraft();
-            $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
-
-            echo TwigSingleton::getTwig()->render("homeAdmin.twig", [
-                'nbCommentFlagged' => $nbCommentFlagged,
-                'datas' => $chapDraft
-            ]);
-        } else {
-            echo TwigSingleton::getTwig()->render("connexionInterface.twig");
-        }
-    }
 
     public function signIn()
     {
@@ -47,6 +31,25 @@ class AdminController
             }
         }
     }
+
+    public function connexion()
+    {
+        if (isset($_SESSION['isAuth'])) {
+            $commentManager = new CommentManager();
+            $postManager = new PostManager();
+            $chapDraft = $postManager->getChapDraft();
+            $nbCommentFlagged = $commentManager->getNumberOfCommentsFlagged();
+
+            echo TwigSingleton::getTwig()->render("homeAdmin.twig", [
+                'nbCommentFlagged' => $nbCommentFlagged,
+                'datas' => $chapDraft
+            ]);
+        } else {
+            echo TwigSingleton::getTwig()->render("connexionInterface.twig");
+        }
+    }
+
+
 
     public function accessChangePassword()
     {
