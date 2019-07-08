@@ -25,7 +25,7 @@ class PostsController
 
         //show five posts
         $posts = $postManager->getFivePosts($firstPost, $postPerPage);
-
+        
         echo  TwigSingleton::getTwig()->render("listPostView.twig", [
             'datas' => $posts,
             'nbPage' => $numberOfPage

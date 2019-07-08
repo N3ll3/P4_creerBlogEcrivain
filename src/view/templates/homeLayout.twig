@@ -45,26 +45,26 @@
 
     </header>
 
-    <section> {% block sectionIntro %}{% endblock %}
-    </section>
+    {% block sectionIntro %}{% endblock %}
+    
 
-    <section class="admin"> {% block admin %}{% endblock %}
-    </section>
+    {% block admin %}{% endblock %}
+   
 
     {% block paginationTop %}
     {% endblock %}
 
-    <section class="containerPosts">
+    <section>
         {% block post %}{% endblock %}
         {% block form %}{% endblock %}
         {% block comment %}{% endblock %}
-
     </section>
+    
     {% block paginationBottom %}
     {% endblock %}
 
     <footer class="main">
-        <p> Site etudiant pour la realisation d'un projet dans le cadre de la formation DWJ d'Openclassroom </p>
+        <p> Site étudiant pour la réalisation d'un projet dans le cadre de la formation DWJ d'Openclassroom </p>
 
     </footer>
 

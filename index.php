@@ -72,7 +72,6 @@ try {
                 $postsController->deletePost($_GET['idPost']);
                 break;
 
-
                 // Page Moderate comment
             case 'moderateComment':
                 $commentsController->listFlaggedComments();
