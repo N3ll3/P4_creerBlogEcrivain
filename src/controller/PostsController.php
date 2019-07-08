@@ -32,6 +32,7 @@ class PostsController
         ]);
     }
 
+
     public function onePost()
     {
         if (isset($_GET['id']) && $_GET['id'] > 0) {

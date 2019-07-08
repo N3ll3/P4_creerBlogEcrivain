@@ -13,6 +13,7 @@ class CommentManager extends Manager
         $this->db = $this->dbConnect();
     }
 
+    
     public function getComments($postId)
     {
         $comments = $this->db->prepare(

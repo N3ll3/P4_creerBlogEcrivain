@@ -18,3 +18,13 @@ Code HTML, CSS, PHP et JavaScript
 Export de la base de données MySQL
 Lien vers la page GitHub contenant l'historique des commits
 (votre historique de commits doit montrer une progression régulière par petites étapes)
+
+#technologies utilisees :
+
+- PHP 7.1.9
+- MySQL 5.7.19
+
+# Comment installer :
+
+- import de la base de donnees SQL : blog.sql
+- faire un `composer install`

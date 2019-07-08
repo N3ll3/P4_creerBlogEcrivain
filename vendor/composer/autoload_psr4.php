@@ -13,5 +13,4 @@ return array(
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Model\\' => array($baseDir . '/src/model'),
     'Controller\\' => array($baseDir . '/src/controller'),
-    'Components\\' => array($baseDir . '/components'),
 );
