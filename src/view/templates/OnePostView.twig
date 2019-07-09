@@ -44,9 +44,9 @@
 {% block post %}
 <div class="post container main">
   {% if session.isAuth %}
-  <a class="modifChap" href="index.php?action=writePostAcces&amp;idPost={{ post.id }}">
-    Modifier le chapitre
-  </a>
+  <a class="btn btn-info" href="index.php?action=writePostAcces&amp;idPost={{post.id }}">
+        Modifier le chapitre
+    </a>
   {% endif %}
 
   <h3 class="postTitle main">
