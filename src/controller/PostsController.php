@@ -25,7 +25,7 @@ class PostsController
 
         //show five posts
         $posts = $postManager->getFivePosts($firstPost, $postPerPage);
-        
+
         echo  TwigSingleton::getTwig()->render("listPostView.twig", [
             'datas' => $posts,
             'nbPage' => $numberOfPage
@@ -140,10 +140,8 @@ class PostsController
         if (isset($_GET['idPost'])) {
             $postManager = new PostManager();
             $deletePost = $postManager->deletePost($idPost);
-            $commentManager = new CommentManager();
-            $deleteComments = $commentManager->deleteComments($idPost);
 
-            if ($deletePost == false && $deleteComments == false) {
+            if ($deletePost == false) {
                 throw new \Exception('Impossible de supprimer le chapitre');
             } else {
                 \header('Location:index.php?action=connexion');

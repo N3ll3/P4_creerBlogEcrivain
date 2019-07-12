@@ -12,7 +12,7 @@ class CommentManager extends Manager
     {
         $this->db = $this->dbConnect();
     }
-  
+
     public function getComments($postId)
     {
         $comments = $this->db->prepare(
@@ -89,16 +89,6 @@ class CommentManager extends Manager
         );
         $nbCommentToModerate = $req->fetch();
         return $nbCommentToModerate[0];
-    }
-
-    public function deleteComments($idPost)
-    {
-        $req = $this->db->prepare(
-            'DELETE FROM comments
-        WHERE post_id=:idPost'
-        );
-        $commentsDeleted = $req->execute(['idPost' => $idPost]);
-        return $commentsDeleted;
     }
 
     public function deleteComment($idComment)
